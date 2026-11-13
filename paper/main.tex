@@ -30,15 +30,14 @@ An excited random walk on $\Z^d$ moves, on its $i$-th visit to a site $x$, accor
 transition probabilities attached to $x$; the stacks are independent and identically distributed over the sites.
 Kosygina and Zerner asked whether $X_n/n\to0$ almost surely on the event that $|X_n|$ does not tend to infinity,
 assuming only that the stacks are i.i.d.\ and every entry is positive. We prove that it does, in every dimension $d\ge2$ (the case $d=1$ is due to Amir, Berger and
-Orenshtein) and with no further restriction on the stacks, which may be infinite and may push in any direction. We also prove for excited
+Orenshtein) and with no further restriction on the stacks. We also prove for excited
 random walks the form of Zerner's theorem on random walk in random environment: if, for a coordinate
 direction $e$, the events $X_n\cdot e\to+\infty$ and $X_n\cdot e\to-\infty$ both have probability zero, then $X_n\cdot e/n\to0$
 almost surely. Together with the directional law of large numbers of Kosygina and Zerner, this gives the almost sure
 convergence of $X_n/n$ under the same two assumptions. The limit takes at most two values, $v$ and $-cv$ with $c\ge0$,
 and for every $\ell\in\R^d\setminus\{0\}$, $X_n\cdot\ell/n\to0$ almost surely on the event that $X_n\cdot\ell$ tends
-neither to $+\infty$ nor to $-\infty$. The strong Markov property, which Zerner applies at the visits of
-the walk to the sites of a level, is replaced by a sum over the finitely many paths the walk can follow between its
-first visit to the level and its last.
+neither to $+\infty$ nor to $-\infty$. The proof replaces Zerner's use of the strong Markov property at the first visit
+of the walk to each hyperplane $\{x:x\cdot e=m\}$ by a sum over paths of bounded length.
 \end{abstract}
 \maketitle
 
@@ -80,9 +79,10 @@ $X_n\cdot e/n\to0$ $P_0$-almost surely. In dimension one, Amir, Berger and Orens
 that $X_n/n$ converges almost surely to a deterministic limit for stationary ergodic elliptic stacks on $\Z$, infinite
 stacks included; when $P_0(N)>0$ the limit is zero, since on $N$ the walk visits some site infinitely often. We answer
 the problem for $d\ge2$; the proof does not use the dimension and gives the case $d=1$ again. Zerner's proof applies
-the strong Markov property at the visits of the walk to the sites of a level. For an excited random walk the law after
-such a visit depends on which entries of the stacks have been used, and we replace that step by a bound summed over
-the finitely many paths the walk can follow after its first visit to the level (Lemma~\ref{lem:fresh}).
+the strong Markov property at the first visit of the walk to each hyperplane $\{x:x\cdot e=m\}$, called level $m$
+below. For an excited random walk the law after such a visit depends on which entries of the stacks have been used,
+and we replace that step by a bound summed over the paths of at most $c$ steps that start at the first visit to the
+level, for a fixed integer $c$; there are finitely many such paths (Lemma~\ref{lem:fresh}).
 
 \begin{theorem}\label{thm:main}
 Let $d\ge1$ and assume (IID) and (EL). Then $X_n/n\to0$ $P_0$-almost surely on $N$. If $P_0(N)>0$, then $X_n/n\to0$
@@ -134,7 +134,7 @@ Part~(i) is the form of Zerner's theorem for every direction $\ell$, and it cont
 Theorem~\ref{thm:main}, since $N$ is disjoint from $A_\ell\cup A_{-\ell}$; the second follows with the zero-one law. Part~(ii) is the first statement of~\cite[Theorem 4.8]{KZ13} without its
 assumption on a basis.
 
-\medskip\noindent\textbf{The idea of the proof.} Fix $e\in E$, call $\{x:x\cdot e=m\}$ level $m$, let $T_m$ be the
+\medskip\noindent\textbf{The idea of the proof.} Fix $e\in E$, so that level $m$ is $\{x:x\cdot e=m\}$, let $T_m$ be the
 time of the first visit of the walk to level $m$, and for an integer $L\ge1$ let $h_{m,L}$ be the time from $T_m$ to the last visit
 to level $m$ before $T_{m+L}$. Zerner's proof has two parts. By Zerner's lemma~\cite[Lemma 3]{Zer02}, a statement about a single path,
 if $\limsup_nX_n\cdot e/n>0$ then there is an integer $c$ such that, for every $L$, the upper density
@@ -154,7 +154,7 @@ at a level $\ge m$. Hence the path of the walk from $T_m$ to that visit determin
 and with them the probability that the walk then reaches level $m+L$ without returning to level $m$. Let $\Pi_c$ be the finite set of nearest-neighbour
 paths $p=(p_0,\dots,p_s)$ with $p_0=0$, $s\le c$ and $p_s\cdot e=0$, and let $\omega^p$ be the environment obtained
 from $\omega$ by removing from each stack the entries used along $p$. Bounding by one the probability that the walk
-follows $p$ after $T_m$, we obtain under (IID) alone, for all $m\ge0$ and $L>c$, on $\{T_m<\infty\}$,
+follows $p$ after $T_m$, we obtain under (IID) alone, for all integers $m\ge0$ and $L>c$, on $\{T_m<\infty\}$,
 \[
 P_0\bigl(T_{m+L}<\infty,\ h_{m,L}\le c\,\big|\,X_0,\dots,X_{T_m}\bigr)\le
 \sum_{p\in\Pi_c}\E\Bigl[P_{p_s,\omega^p}\bigl(T_L<\infty,\ X_n\cdot e>0\text{ for }1\le n\le T_L\bigr)\Bigr]
@@ -195,7 +195,7 @@ $P_0$-almost surely infinite.
 \item[(R2)] \cite[Lemma 3.18]{KZ13} If the range is $P_0$-almost surely infinite, then for every
 $\ell\in\R^d\setminus\{0\}$ and all real $u<w$, the walk almost surely does not stay in the half-space
 $\{x:x\cdot\ell\le w\}$ forever while visiting the slab $\{x:u\le x\cdot\ell\le w\}$ infinitely often.
-\item[(R3)] \cite[Theorem 3.16]{KZ13} For every $\ell\in\R^d\setminus\{0\}$, $P_0(A_\ell\cup A_{-\ell})\in\{0,1\}$.
+\item[(R3)] \cite[Theorem 3.16]{KZ13}, the zero-one law: for every $\ell\in\R^d\setminus\{0\}$, $P_0(A_\ell\cup A_{-\ell})\in\{0,1\}$.
 \end{itemize}
 
 \begin{lemma}\label{lem:onesidedpaths}
@@ -270,13 +270,13 @@ $w_p>0$ almost surely, $q_\infty^p=0$ almost surely. By dominated convergence $\
 \end{proof}
 
 Let $\mathcal F_n=\sigma(X_0,\dots,X_n)$; for a stopping time $T$, $\mathcal F_T$ is the $\sigma$-field of events
-determined by the path up to time $T$. For $m\ge0$, $c\ge0$ and $L>c$ let
+determined by the path up to time $T$. For integers $m\ge0$, $c\ge0$ and $L>c$ let
 \[
 B_{m,L,c}=\{T_{m+L}<\infty,\ h_{m,L}\le c\}.
 \]
 
 \begin{lemma}\label{lem:fresh}
-Assume (IID). Let $m\ge0$, $c\ge0$ and $L>c$. Then $P_0(B_{m,L,c}\mid\mathcal F_{T_m})\le a_L(c)$ on $\{T_m<\infty\}$.
+Assume (IID). Let $m\ge0$, $c\ge0$ and $L>c$ be integers. Then $P_0(B_{m,L,c}\mid\mathcal F_{T_m})\le a_L(c)$ on $\{T_m<\infty\}$.
 \end{lemma}
 
 \begin{proof}

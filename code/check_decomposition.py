@@ -1,10 +1,10 @@
 """Exact check, on finite horizons, of the sum over the paths of Pi_c in the proof of Lemma 3.2.
 
-For three cookie stacks on Z^2 and c = 0, 1, 2 it computes the probability that the last visit to
+For three stacks on Z^2 and c = 0, 1, 2 it computes the probability that the last visit to
 level 0 before level 3 comes at most c steps after time 0, directly and as the sum over short paths
 of (path probability) x (probability of then reaching level 3 without returning to level 0), and
 checks that the two agree and that dropping the path probabilities gives an upper bound.
-old_left = 17 consumes 17 cookies at every site of level -1 and below beforehand."""
+old_left = 17 uses 17 entries at every site of level -1 and below beforehand."""
 import itertools
 import json
 import os
