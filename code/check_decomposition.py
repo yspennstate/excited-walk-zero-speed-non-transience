@@ -1,4 +1,4 @@
-"""Exact check, on finite horizons, of the decomposition over short paths in Lemma 3.2.
+"""Exact check, on finite horizons, of the sum over the paths of Pi_c in the proof of Lemma 3.2.
 
 For three cookie stacks on Z^2 and c = 0, 1, 2 it computes the probability that the last visit to
 level 0 before level 3 comes at most c steps after time 0, directly and as the sum over short paths

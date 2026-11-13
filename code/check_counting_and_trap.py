@@ -1,4 +1,4 @@
-"""Finite checks of the averages in the counting lemma (Lemma 2.2, from Zerner 2002, Lemma 3) and of the trapping example in Remark 5.1."""
+"""Finite checks of the averages in Zerner's lemma (Lemma 2.2, from Zerner 2002, Lemma 3) and of the trapping example in Remark 5.1."""
 import json
 import math
 import os
@@ -20,7 +20,7 @@ def wilson(k, n):
 
 
 def check_counts():
-    """The two averages bounded in the proof of the counting lemma (Lemma 2.2), on random paths of length 2000."""
+    """The two averages bounded in the proof of Zerner's lemma (Lemma 2.2), on random paths of length 2000."""
     rng = random.Random(SEED+1)
     successes = 0
     for trial in range(100):
