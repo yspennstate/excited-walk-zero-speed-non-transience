@@ -23,46 +23,50 @@
 \subjclass[2020]{60K35, 60K37, 60F15}
 \keywords{excited random walk, cookie random walk, law of large numbers, self-interacting random walk, zero-one law}
 
+\raggedbottom
 \begin{document}
 \begin{abstract}
 An excited random walk on $\Z^d$ moves, on its $i$-th visit to a site $x$, according to the $i$-th entry of a stack of
 transition probabilities attached to $x$; the stacks are independent and identically distributed over the sites.
 Kosygina and Zerner asked whether $X_n/n\to0$ almost surely on the event that $|X_n|$ does not tend to infinity,
-assuming only that the stacks are i.i.d.\ and every entry is positive. We prove that it does, in every dimension and with
-no further restriction on the stacks, which may be infinite and may push in any direction. We also prove the
+assuming only that the stacks are i.i.d.\ and every entry is positive. We prove that it does, in every dimension $d\ge2$ (the case $d=1$ is due to Amir, Berger and
+Orenshtein) and with no further restriction on the stacks, which may be infinite and may push in any direction. We also prove the
 excited-walk form of Zerner's law of large numbers for random walk in random environment: if, for a coordinate
-direction $e$, the walk tends to $+\infty$ and to $-\infty$ in direction $e$ with probability zero, then $X_n\cdot e/n\to0$
-almost surely. With a theorem of the survey this gives the almost sure convergence of $X_n/n$ under the same two
-assumptions. The strong Markov property, which Zerner applies at the last visit to a level, is replaced by a sum over the
-finitely many paths the walk can follow between its first visit to the level and that visit.
+direction $e$, the events $X_n\cdot e\to+\infty$ and $X_n\cdot e\to-\infty$ both have probability zero, then $X_n\cdot e/n\to0$
+almost surely. Together with the directional law of large numbers of Kosygina and Zerner, this gives the almost sure
+convergence of $X_n/n$ under the same two assumptions. The strong Markov property, which Zerner applies at the visits of
+the walk to the sites of a level, is replaced by a sum over the finitely many paths the walk can follow between its
+first visit to the level and its last.
 \end{abstract}
 \maketitle
 
 \section{Introduction}\label{sec:intro}
 
-Let $E=\{\pm e_1,\dots,\pm e_d\}$ be the unit vectors of $\Z^d$. A \emph{cookie environment} is a family
+Let $E=\{\pm e_1,\dots,\pm e_d\}$ be the set of unit vectors of $\Z^d$, which we call the coordinate directions. A \emph{cookie environment} is a family
 $\omega=(\omega(x,a,i))_{x\in\Z^d,\,a\in E,\,i\ge1}$ with $\omega(x,a,i)\ge0$ and $\sum_{a\in E}\omega(x,a,i)=1$. The
 sequence $\omega(x,\cdot,\cdot)$ is the \emph{stack} at $x$. Given $\omega$ and $y\in\Z^d$, the excited random walk
 $(X_n)_{n\ge0}$ starts at $X_0=y$ and moves by
 \begin{equation}\label{eq:step}
 P_{y,\omega}\bigl(X_{n+1}=X_n+a\,\big|\,X_0,\dots,X_n\bigr)=\omega\bigl(X_n,a,\#\{0\le m\le n:X_m=X_n\}\bigr),\qquad a\in E,
 \end{equation}
-so on its $i$-th visit to a site the walk uses the $i$-th entry of that site's stack. The environment is random with
-law $\Prob$, and $P_y=\E[P_{y,\omega}]$ is the annealed law, where $\E$ is expectation with respect to $\Prob$; $E_y$
-is expectation with respect to $P_y$. We use the two assumptions of the survey of Kosygina and
+so on its $i$-th visit to a site the walk uses the $i$-th entry of that site's stack. The environment $\omega$ is chosen at
+random with law $\Prob$, and $\E$ is expectation with respect to $\Prob$. The law $P_{y,\omega}$ of the walk in a fixed
+environment is called the quenched law, its average $P_y=\E[P_{y,\omega}]$ over the environment is called the annealed
+law, and $E_y$ is expectation with respect to $P_y$. We use the two assumptions of the survey of Kosygina and
 Zerner~\cite{KZ13}:
 \begin{itemize}
 \item[(IID)] the stacks $\omega(x,\cdot,\cdot)$, $x\in\Z^d$, are independent and identically distributed under $\Prob$;
 \item[(EL)] $\Prob$-almost surely, $\omega(x,a,i)>0$ for all $x$, $a$ and $i$.
 \end{itemize}
 Nothing else is assumed. There is no uniform lower bound in (EL), the entries of one stack need not be independent, and a
-stack may have infinitely many entries that differ from the simple random walk step, with drifts of either sign.
+stack may have infinitely many entries that differ from the simple random walk step. The mean step
+$\sum_{a\in E}a\,\omega(x,a,i)$ of an entry, its drift, may point in any direction.
 
 For $\ell\in\R^d\setminus\{0\}$ let $A_\ell=\{X_n\cdot\ell\to+\infty\}$, and let
 \[
 N=\bigl\{|X_n|\not\to\infty\bigr\}
 \]
-be the event that the walk does not go to infinity, which we call non-transience. Kosygina and Zerner asked the following~\cite[Problem 4.7]{KZ13}.
+be the event that the walk does not tend to infinity, which we call non-transience. Kosygina and Zerner asked the following~\cite[Problem 4.7]{KZ13}.
 
 \medskip\noindent\textbf{Problem.} Assume (IID) and (EL), and let $\ell\in\R^d\setminus\{0\}$. Does $X_n\cdot\ell/n$
 converge to $0$ $P_0$-almost surely on $N$?
@@ -73,7 +77,7 @@ on $i$, Zerner~\cite[Theorem 1]{Zer02} proved the following: if $e\in E$ and $P_
 $X_n\cdot e/n\to0$ $P_0$-almost surely. In dimension one, Amir, Berger and Orenshtein~\cite[Theorem 1.3]{ABO16} proved
 that $X_n/n$ converges almost surely to a deterministic limit for stationary ergodic elliptic stacks on $\Z$, infinite
 stacks included; when $P_0(N)>0$ the limit is zero, since on $N$ the walk visits some site infinitely often. We answer
-the problem in every dimension.
+the problem for $d\ge2$; the proof does not use the dimension and gives the case $d=1$ again.
 
 \begin{theorem}\label{thm:main}
 Let $d\ge1$ and assume (IID) and (EL). Then $X_n/n\to0$ $P_0$-almost surely on $N$. If $P_0(N)>0$, then $X_n/n\to0$
@@ -83,7 +87,7 @@ $P_0$-almost surely.
 The main step is the following one-sided statement, which holds for every coordinate direction separately.
 
 \begin{proposition}\label{prop:onesided}
-Assume (IID) and (EL), and let $e\in E$. If $P_0(A_e)=0$, then $\limsup_{n}X_n\cdot e/n\le0$ $P_0$-almost surely.
+Assume (IID) and (EL), and let $e\in E$. If $P_0(A_e)=0$, then \mbox{$\limsup_{n}X_n\cdot e/n\le0$} $P_0$-almost surely.
 \end{proposition}
 
 Applied to $e$ and to $-e$, Proposition~\ref{prop:onesided} gives the excited-walk form of Zerner's theorem.
@@ -95,16 +99,31 @@ Assume (IID) and (EL), and let $e\in E$. If $P_0(A_e\cup A_{-e})=0$, then $X_n\c
 When the stacks are constant in $i$ this is~\cite[Theorem 1]{Zer02}. When $P_0(N)>0$, the zero-one
 law~\cite[Theorem 3.16]{KZ13} gives $P_0(A_e\cup A_{-e})=0$ for every $e\in E$, and Theorem~\ref{thm:main} follows; the
 deduction is in Section~\ref{sec:proof}. With~\cite[Theorem 4.6]{KZ13}, Corollary~\ref{cor:zerner} also gives a law
-of large numbers under (IID) and (EL) alone.
+of large numbers under (IID) and (EL) alone, as Theorem~1 of~\cite{Zer02} does for random walk in random environment.
 
 \begin{corollary}\label{cor:lln}
-Assume (IID) and (EL). Then $X_n/n$ converges $P_0$-almost surely. For $1\le j\le d$, the limit of $X_n\cdot e_j/n$ is
-$0$ if $P_0(A_{e_j}\cup A_{-e_j})=0$; otherwise it is a constant $v_{e_j}\ge0$ on $A_{e_j}$ and a constant
-$-v_{-e_j}\le0$ on $A_{-e_j}$.
+Assume (IID) and (EL). Then $X_n/n$ converges $P_0$-almost surely. For \mbox{$1\le j\le d$}, the limit of
+$X_n\cdot e_j/n$ is $0$ if $P_0(A_{e_j}\cup A_{-e_j})=0$. Otherwise it equals $v_{e_j}$ on $A_{e_j}$ and $-v_{-e_j}$ on
+$A_{-e_j}$, where, for $\ell$ with $P_0(A_\ell)>0$, $v_\ell\in[0,1]$ is the constant of~\cite[Theorem 4.6]{KZ13}.
 \end{corollary}
 
+Two consequences concern directions other than the coordinate ones.
+
+\begin{corollary}\label{cor:direction}
+Assume (IID) and (EL).
+\begin{itemize}
+\item[(i)] For every $\ell\in\R^d\setminus\{0\}$, $X_n\cdot\ell/n\to0$ $P_0$-almost surely on the complement of
+$A_\ell\cup A_{-\ell}$.
+\item[(ii)] There are $v\in\R^d$ and $c\ge0$ such that $\lim_nX_n/n\in\{v,-cv\}$ $P_0$-almost surely.
+\end{itemize}
+\end{corollary}
+
+Part~(i) is the form of Zerner's theorem for every direction $\ell$, and it contains Theorem~\ref{thm:main}, since $N$
+is disjoint from $A_\ell\cup A_{-\ell}$. Part~(ii) is the first statement of~\cite[Theorem 4.8]{KZ13} without its
+assumption on a basis.
+
 \medskip\noindent\textbf{The idea of the proof.} Fix $e\in E$, call $\{x:x\cdot e=m\}$ level $m$, let $T_m$ be the
-first time the walk is at level $m$, and for an integer $L\ge1$ let $h_{m,L}$ be the time from $T_m$ to the last visit
+time of the first visit of the walk to level $m$, and for an integer $L\ge1$ let $h_{m,L}$ be the time from $T_m$ to the last visit
 to level $m$ before $T_{m+L}$. Zerner's proof has two parts. By Zerner's lemma~\cite[Lemma 3]{Zer02}, a statement about a single path,
 if $\limsup_nX_n\cdot e/n>0$ then there is an integer $c$ such that, for every $L$, the upper density
 \[
@@ -113,9 +132,9 @@ if $\limsup_nX_n\cdot e/n>0$ then there is an integer $c$ such that, for every $
 of the levels $m$ with $h_{m,L}\le c$ is bounded below by a positive constant that does not depend on $L$. The second
 part bounds the probability that $h_{m,L}\le c$. At its last visit to level $m$ the walk is at one of finitely many
 sites $z$, for the $r$-th time, with $r\le c+1$. The $r$-th visit to $z$ is a stopping time, and by the strong Markov
-property the walk has law $P_{z,\omega}$ from then on. The probability that it then reaches level $m+L$ without
-returning to level $m$ depends only on the environment at levels $\ge m$, which is independent of the path up to time
-$T_m$.
+property the walk has law $P_{z,\omega}$ from then on. For levels $m$ in one residue class modulo $L$, the events that the walk then reaches
+level $m+L$ without returning to level $m$ are dominated by independent events, each of probability $P_0$ that the walk
+reaches level $L$ before it returns to level $0$~\cite[(15)]{Zer02}.
 
 For an excited walk the law after the $r$-th visit to $z$ is not $P_{z,\omega}$. It depends on which entries of the
 stacks at $z$, and at the other sites visited since $T_m$, have been used, and this is not determined by $z$ and $r$.
@@ -128,20 +147,22 @@ P_0\bigl(T_{m+L}<\infty,\ h_{m,L}\le c\,\big|\,X_0,\dots,X_{T_m}\bigr)\le
 \sum_{p\in\Pi_c}\E\Bigl[P_{p_s,\omega^p}\bigl(T_L<\infty,\ X_n\cdot e>0\text{ for }1\le n\le T_L\bigr)\Bigr]
 \]
 (Lemma~\ref{lem:fresh}). The right side depends neither on $m$ nor on the path up to time $T_m$. Each term decreases,
-as $L\to\infty$, to the expected probability that the walk in $\omega^p$ started at $p_s$ stays above level $0$ and
+as $L\to\infty$, to the expected probability that the walk in $\omega^p$ started at $p_s$ stays strictly above level $0$ and
 reaches every level, and under (EL) this is zero when $P_0(A_e)=0$ (Lemma~\ref{lem:prefix}). Hence, almost surely, the
 upper density of the levels $m$ with $h_{m,L}\le c$ is at most the right side, which tends to $0$ as $L\to\infty$ for
 each $c$, and Zerner's lemma gives $\limsup_nX_n\cdot e/n\le0$.
 
-\medskip\noindent\textbf{Related work.} Excited random walk was introduced by Benjamini and Wilson~\cite{BW03}, with one
-cookie of drift in direction $e_1$ at each site. Zerner~\cite{Zer06} and Menshikov, Popov, Ram\'irez and
+\medskip\noindent\textbf{Related work.} Excited random walk was introduced by Benjamini and Wilson~\cite{BW03}, in which the
+first entry of every stack has a drift in direction $e_1$ and all later entries are simple random walk steps. Zerner~\cite{Zer06} and Menshikov, Popov, Ram\'irez and
 Vachkovskaia~\cite{MPRV12} studied walks whose drifts point into a half-space, and B\'erard and Ram\'irez~\cite{BR07} proved
-a central limit theorem for the Benjamini--Wilson walk; for $d\ge2$ the walk in these models is transient, and $P_0(N)=0$. The laws of
+a central limit theorem for the Benjamini--Wilson walk; for $d\ge2$ the walk in these models is transient under the assumptions of these papers, and $P_0(N)=0$. The laws of
 large numbers of Holmes~\cite{Hol12} and Pham~\cite{Pha15} in high dimensions assume simple transverse steps.
 Theorem~4.8 of the survey~\cite{KZ13} gives $\lim_nX_n/n\in\{v,-cv\}$ for some $v\in\R^d$ and $c\ge0$ when
-$P_0(A_{\ell_i}\cup A_{-\ell_i})=1$ for every vector of a basis $\ell_1,\dots,\ell_d$ of $\R^d$; the survey attributes
-this assumption to Problem~4.7. By the zero-one law~\cite[Theorem 3.16]{KZ13} each of these probabilities is $0$ or
-$1$, and Corollary~\ref{cor:zerner} gives $X_n\cdot e/n\to0$ for a coordinate direction $e$ in which it is $0$. In dimension one, besides~\cite{ABO16}, infinite stacks
+$P_0(A_{\ell_i}\cup A_{-\ell_i})=1$ for every vector of a basis $\ell_1,\dots,\ell_d$ of $\R^d$. The assumption is there
+because nothing was known in a direction $\ell$ with $P_0(A_\ell\cup A_{-\ell})=0$, which is the case Problem~4.7
+concerns; the survey notes that it is not needed in the corresponding result for random walk in random
+environment~\cite[Theorem 1.5]{DR10}. Corollary~\ref{cor:zerner} settles this case for the coordinate directions, and
+Corollary~\ref{cor:direction} gives the conclusion of~\cite[Theorem 4.8]{KZ13} with no assumption on a basis. In dimension one, besides~\cite{ABO16}, infinite stacks
 were treated by Kosygina and Peterson~\cite{KP17} for Markovian stacks.
 
 A table of notation is in Appendix~\ref{app:notation}.
@@ -161,7 +182,6 @@ $\ell\in\R^d\setminus\{0\}$ and all real $u<w$, the walk almost surely does not 
 $\{x:x\cdot\ell\le w\}$ forever while visiting the slab $\{x:u\le x\cdot\ell\le w\}$ infinitely often.
 \item[(R3)] \cite[Theorem 3.16]{KZ13} For every $\ell\in\R^d\setminus\{0\}$, $P_0(A_\ell\cup A_{-\ell})\in\{0,1\}$.
 \end{itemize}
-We use (R2) only with $\ell$ a coordinate vector and $u,w$ integers.
 
 \begin{lemma}\label{lem:onesidedpaths}
 Assume (IID) and (EL), suppose the range is $P_0$-almost surely infinite, and let $e\in E$. Then
@@ -201,7 +221,7 @@ $\limsup_n x_n\cdot e/n>0$, then there is an integer $c\ge0$ with
 \section{The estimate at the first visit to a level}\label{sec:fresh}
 
 Fix $e\in E$ and recall $\Pi_c$ and $\omega^p$ from Section~\ref{sec:intro}; in formulas, for $p\in\Pi_c$ let
-$k_p(x)=\#\{0\le t<s:p_t=x\}$ be the number of departures from $x$ along $p$, and $\omega^p(x,a,i)=\omega(x,a,i+k_p(x))$.
+\mbox{$k_p(x)=\#\{0\le t<s:p_t=x\}$} be the number of departures from $x$ along $p$, and $\omega^p(x,a,i)=\omega(x,a,i+k_p(x))$.
 The
 endpoint $p_s$ has not been left along $p$ after its last visit, so its next entry is not removed. For $L>c$ define
 \[
@@ -224,9 +244,9 @@ Assume (IID) and (EL), and suppose $P_0(A_e)=0$. Then for every $c\ge0$, $a_L(c)
 
 \begin{proof}
 Fix $p\in\Pi_c$ and let $w_p(\omega)=P_{0,\omega}\bigl((X_0,\dots,X_s)=p\bigr)$, a finite product of entries of
-$\omega$, which is positive $\Prob$-almost surely by (EL). After following $p$ the walk sits at $p_s$, and the stacks it has
-not yet used are those of $\omega^p$, so by~\eqref{eq:step}, $w_p\,q_\infty^p$ is the probability under $P_{0,\omega}$ that the walk follows $p$
-and afterwards stays strictly above level $0$ and reaches every level. By (R1) the range is $P_0$-almost surely finite or
+$\omega$, which is positive $\Prob$-almost surely by (EL). After following $p$ the walk is at $p_s$, and the entries it has
+not yet used are those of $\omega^p$. By~\eqref{eq:step}, $w_p\,q_\infty^p$ is therefore the probability under
+$P_{0,\omega}$ that the walk follows $p$ and afterwards stays strictly above level $0$ and reaches every level. By (R1) the range is $P_0$-almost surely finite or
 $P_0$-almost surely infinite. In the first case this event is $P_0$-null. In the second, since $X_n\cdot e\ge-c$ for all $n$ on this event, Lemma~\ref{lem:onesidedpaths} shows
 that it is contained in $A_e$ up to a $P_0$-null set. In both cases $\E[w_pq_\infty^p]\le P_0(A_e)=0$, and since
 $w_p>0$ almost surely, $q_\infty^p=0$ almost surely. By dominated convergence $\E[q_L^p]\to0$, and $\Pi_c$ is finite.
@@ -248,17 +268,17 @@ $x=\eta_t$, and let $w_\eta(\omega)=P_{0,\omega}\bigl((X_0,\dots,X_t)=\eta\bigr)
 sites at levels below $m$, so $w_\eta$ is a product of entries of stacks at sites $y$ with $y\cdot e<m$.
 
 On $B_{m,L,c}\cap\{(X_0,\dots,X_t)=\eta\}$ let $t+s$ be the last visit to level $m$ before $T_{m+L}$, so that
-$s=h_{m,L}\le c$, and let $p=(X_{t+r}-x)_{0\le r\le s}$; then $p\in\Pi_c$. Conversely, if the walk follows $\eta$, then
-$x+p$ for some $p\in\Pi_c$, and then reaches level $m+L$ before returning to level $m$, it lies in $B_{m,L,c}$ with
-$h_{m,L}=s$, because the path $x+p$ has at most $c<L$ steps and does not reach level $m+L$. These events are disjoint
+$s=h_{m,L}\le c$, and let $p=(X_{t+r}-x)_{0\le r\le s}$; then $p\in\Pi_c$. Conversely, suppose the walk follows $\eta$, then
+$x+p$ for some $p\in\Pi_c$, and then reaches level $m+L$ before returning to level $m$. The path $x+p$ has at most
+$c<L$ steps and so does not reach level $m+L$. Hence $B_{m,L,c}$ occurs and $h_{m,L}=s$. These events are disjoint
 for different $p$: if $p$ is a proper initial piece of $p'$, a walk that follows $x+p'$ is at level $m$ at a step
 after $t+s$ and before $T_{m+L}$.
 
 Let $\omega'$ be the environment with the entries used by $\eta$ removed, and let
 $(\theta_x\omega')(z,a,i)=\omega'(x+z,a,i)$. After following $\eta$ and then $x+p$ the walk is at $x+p_s$, and
 by~\eqref{eq:step} it then reaches level $m+L$ before returning to level $m$ with probability
-$q_L^p(\theta_x\omega')$. As noted after the definition of $q_L^p$, it reads only stacks at levels $\ge m$ after the shift, and $\eta$
-uses no entry of these stacks, so $q_L^p(\theta_x\omega')=q_L^p(\theta_x\omega)$. The probability of following $\eta$
+$q_L^p(\theta_x\omega')$. By the remark after the definition of $q_L^p$, $q_L^p(\theta_x\omega')$ depends only on the stacks of $\omega'$ at
+levels $\ge m$, and $\eta$ uses no entry of these stacks, so $q_L^p(\theta_x\omega')=q_L^p(\theta_x\omega)$. The probability of following $\eta$
 and then $x+p$ is at most $w_\eta(\omega)$, so
 \begin{align*}
 P_{0,\omega}\bigl(B_{m,L,c},\ (X_0,\dots,X_t)=\eta\bigr)
@@ -275,13 +295,14 @@ kind, and summing over them gives the claim.
 
 \section{Proof of Proposition~\ref{prop:onesided}}\label{sec:onesided}
 
-Let $P_0(A_e)=0$.
+Assume (IID) and (EL), let $e\in E$ and suppose $P_0(A_e)=0$.
 
-Fix $c\ge0$, $L>c$ and a residue $r\in\{0,\dots,L-1\}$, and put $m_k=r+kL$, $\mathcal G_k=\mathcal F_{T_{m_k}}$ and
+As in~\cite[(14)]{Zer02} we treat the levels of one residue class modulo $L$ together. Fix $c\ge0$, $L>c$ and a residue $r\in\{0,\dots,L-1\}$, and put $m_k=r+kL$, $\mathcal G_k=\mathcal F_{T_{m_k}}$ and
 $Z_k=\mathbf 1_{B_{m_k,L,c}}$. The event
 $B_{m_k,L,c}$ is determined by the path up to $T_{m_k+L}=T_{m_{k+1}}$, so $Z_k$ is $\mathcal G_{k+1}$-measurable, and
-$Z_k-E_0[Z_k\mid\mathcal G_k]$ is a martingale difference sequence bounded by $1$. By the Azuma--Hoeffding inequality,
-$P_0\bigl(|\sum_{k<K}(Z_k-E_0[Z_k\mid\mathcal G_k])|>\varepsilon K\bigr)\le2e^{-\varepsilon^2K/2}$, so by the
+$Z_k-E_0[Z_k\mid\mathcal G_k]$ is a martingale difference sequence bounded by $1$. In~\cite{Zer02} the corresponding events are independent;
+here Lemma~\ref{lem:fresh} bounds their conditional probabilities. By the Azuma--Hoeffding inequality, for every
+$\varepsilon>0$, $P_0\bigl(|\sum_{k<K}(Z_k-E_0[Z_k\mid\mathcal G_k])|>\varepsilon K\bigr)\le2e^{-\varepsilon^2K/2}$, so by the
 Borel--Cantelli lemma $K^{-1}\sum_{k<K}(Z_k-E_0[Z_k\mid\mathcal G_k])\to0$ $P_0$-almost surely. With
 Lemma~\ref{lem:fresh},
 \[
@@ -293,13 +314,13 @@ residues and intersecting over the countably many pairs $(c,L)$, almost surely, 
 \limsup_{M\to\infty}\frac1{M+1}\sum_{m=0}^{M}\mathbf 1_{B_{m,L,c}}\le a_L(c).
 \end{equation}
 
-Now take a path in the almost sure event of~\eqref{eq:freq} with $\limsup_nX_n\cdot e/n>0$. Since $h_{m,L}=\infty$ when
+Suppose a path in the event of~\eqref{eq:freq} has $\limsup_nX_n\cdot e/n>0$. Since $h_{m,L}=\infty$ when
 $T_{m+L}=\infty$, $B_{m,L,c}=\{h_{m,L}\le c\}$, and the left side of~\eqref{eq:freq} is $\limsup_MF_{M,L}(c)$. By
 Lemma~\ref{lem:prefix}, $\inf_{L>c}\limsup_MF_{M,L}(c)=0$ for every $c$; since $F_{M,L}(c)$ does not increase in $L$,
 the infimum over all $L\ge1$ is also zero. This contradicts Lemma~\ref{lem:counting}. Hence
 $\limsup_nX_n\cdot e/n\le0$ almost surely. \qed
 
-\section{Proofs of Corollaries~\ref{cor:zerner} and~\ref{cor:lln} and Theorem~\ref{thm:main}}\label{sec:proof}
+\section{Proofs of Corollaries~\ref{cor:zerner}, \ref{cor:lln} and~\ref{cor:direction} and Theorem~\ref{thm:main}}\label{sec:proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:zerner}]
 If $P_0(A_e\cup A_{-e})=0$, then $P_0(A_e)=P_0(A_{-e})=0$. Proposition~\ref{prop:onesided}, applied to $e$ and to $-e$,
@@ -319,6 +340,24 @@ $X_n\cdot e_j/n\to0$. If it is $1$, apply~\cite[Theorem 4.6]{KZ13} to each of $e
 $A_{\pm e_j}$ has positive probability: on $A_{\ell}$, $X_n\cdot\ell/n$ converges to a constant $v_\ell\ge0$. Since
 $A_{e_j}\cup A_{-e_j}$ has probability $1$, $X_n\cdot e_j/n$ converges $P_0$-almost surely in this case too. This holds
 for every $j$, so $X_n/n$ converges $P_0$-almost surely.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:direction}]
+By Corollary~\ref{cor:lln}, $X_n/n$ converges almost surely to a limit $V$. (i) Where $V\cdot\ell>0$ we have
+$X_n\cdot\ell\to+\infty$, and where $V\cdot\ell<0$ we have $X_n\cdot\ell\to-\infty$; so $V\cdot\ell=0$ off
+$A_\ell\cup A_{-\ell}$.
+
+(ii) By Corollary~\ref{cor:lln} each coordinate of $V$ takes at most two values, so $V$ takes at most $2^d$ values. Let
+$u_1\ne u_2$ be nonzero values taken with positive probability, and suppose $u_2$ is not a negative multiple of $u_1$.
+Then there is $\ell$ with $u_1\cdot\ell>0$, $u_2\cdot\ell>0$ and $u_1\cdot\ell\ne u_2\cdot\ell$: if $u_1,u_2$ are
+linearly independent, prescribe the two inner products; if $u_2=tu_1$ with $t>0$, $t\ne1$, take $\ell=u_1$. Both events
+$\{V=u_i\}$ lie in $A_\ell$, where $X_n\cdot\ell/n$ converges to the single constant $v_\ell$
+by~\cite[Theorem 4.6]{KZ13}, a contradiction. So any two nonzero values are negative multiples of each other, and
+hence there are at most two: $v$ alone, or $v$ and $-cv$ with $c>0$. In the second case $P_0(A_v)>0$ and
+$P_0(A_{-v})>0$, so $P_0(A_v\cup A_{-v})=1$ by (R3). On $A_v$ the limit of $X_n\cdot v/n$ is the constant
+$v_v=|v|^2>0$, and on $A_{-v}$ the limit of $X_n\cdot(-v)/n$ is $c|v|^2>0$, so $V\ne0$ almost surely and
+$V\in\{v,-cv\}$. In the first case $V\in\{v,0\}$, which is the statement with $c=0$; if $V=0$ almost surely, take
+$v=0$.
 \end{proof}
 
 \begin{remark}\label{rem:trap}
@@ -369,6 +408,8 @@ random walks, \emph{Ann. Inst. Henri Poincar\'e Probab. Stat.} \textbf{52} (2016
 $d\ge2$, \emph{Electron. Commun. Probab.} \textbf{12} (2007), 303--314, \doi{10.1214/ECP.v12-1317}.
 \bibitem{BW03} I.~Benjamini and D.~B.~Wilson, Excited random walk, \emph{Electron. Commun. Probab.} \textbf{8} (2003),
 86--92, \doi{10.1214/ECP.v8-1072}.
+\bibitem{DR10} A.~Drewitz and A.~F.~Ram\'irez, Asymptotic direction in random walks in random environment
+revisited, \emph{Braz. J. Probab. Stat.} \textbf{24} (2010), 212--225, \doi{10.1214/09-BJPS028}.
 \bibitem{Hol12} M.~Holmes, Excited against the tide: a random walk with competing drifts, \emph{Ann. Inst. Henri
 Poincar\'e Probab. Stat.} \textbf{48} (2012), 745--773, \doi{10.1214/11-AIHP434}.
 \bibitem{KP17} E.~Kosygina and J.~Peterson, Excited random walks with Markovian cookie stacks, \emph{Ann. Inst. Henri
@@ -401,7 +442,7 @@ October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/pa
 \toprule
 Symbol & Meaning & First appears\\
 \midrule
-$E$ & the $2d$ unit vectors of $\Z^d$ & Section~\ref{sec:intro}\\
+$E$ & the coordinate directions, the $2d$ unit vectors of $\Z^d$ & Section~\ref{sec:intro}\\
 $\omega(x,a,i)$ & probability of step $a$ on the $i$-th visit to $x$ (an entry of the stack at $x$) & Section~\ref{sec:intro}\\
 $X_n$ & the excited random walk; its range is $\{X_n:n\ge0\}$ & Section~\ref{sec:intro}\\
 $P_{y,\omega}$, $P_y$, $\Prob$ & quenched law, annealed law, law of the environment & Section~\ref{sec:intro}\\
@@ -409,11 +450,12 @@ $P_{y,\omega}$, $P_y$, $\Prob$ & quenched law, annealed law, law of the environm
 $\E$, $E_y$ & expectation with respect to $\Prob$ and to $P_y$ & Section~\ref{sec:intro}\\
 $A_\ell$ & the event $X_n\cdot\ell\to+\infty$ & Section~\ref{sec:intro}\\
 $N$ & the event $|X_n|\not\to\infty$ & Section~\ref{sec:intro}\\
+$v_\ell$ & the limit of $X_n\cdot\ell/n$ on $A_\ell$ & Corollary~\ref{cor:lln}\\
 level $m$ & the set $\{x:x\cdot e=m\}$ & Section~\ref{sec:intro}\\
-$T_m$, $h_{m,L}$ & first time at level $m$; time from $T_m$ to the last visit to level $m$ before $T_{m+L}$ & Section~\ref{sec:intro}\\
+$T_m$, $h_{m,L}$ & time of the first visit to level $m$; time from $T_m$ to the last visit to level $m$ before $T_{m+L}$ & Section~\ref{sec:intro}\\
 $\Pi_c$ & nearest-neighbour paths from $0$ with at most $c$ steps that end at level $0$ & Section~\ref{sec:intro}\\
 $\omega^p$ & the environment with the entries used along $p$ removed & Section~\ref{sec:intro}\\
-$I_{m,L}$ & visits to level $m$ before level $m+L$ & Section~\ref{sec:prelim}\\
+$I_{m,L}$ & times $n$ with $T_m\le n<T_{m+L}$ at which the walk is at level $m$ & Section~\ref{sec:prelim}\\
 $F_{M,L}(c)$ & fraction of levels $m\le M$ with $h_{m,L}\le c$ & Section~\ref{sec:prelim}\\
 $k_p$ & departure counts of $p$ & Section~\ref{sec:fresh}\\
 $q_L^p$, $q_\infty^p$, $D$ & probability of reaching level $L$ before time $D$; its limit; the first time $n\ge1$ with $X_n\cdot e\le0$ & Section~\ref{sec:fresh}\\
