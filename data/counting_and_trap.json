@@ -1,0 +1,27 @@
+{
+  "seed": 13320261113,
+  "counting_checks": {
+    "paths": 100,
+    "path_length": 2000,
+    "sum_checks": 400,
+    "strict_growth_implication": "passed"
+  },
+  "trap": {
+    "trials": 20000,
+    "mark_pairs": 1274,
+    "survivals": 845,
+    "frequency": 0.04225,
+    "wilson_95": [
+      0.03954891647853988,
+      0.045126892530823914
+    ],
+    "cookies_per_site": 80,
+    "event_probability_product": 0.04242660227895439,
+    "event_probability_via_logs": 0.04242660227895439,
+    "conditional_tail_error_bound": 3.101927297073854e-25,
+    "completed_two_step_excursions_on_success": 80,
+    "maximum_distance_on_success": 1,
+    "maximum_abs_x_over_n_after_time_2k": "1/(2k+1)"
+  },
+  "elapsed_seconds": 0.35868439998012036
+}

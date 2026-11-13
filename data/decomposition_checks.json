@@ -1,0 +1,187 @@
+{
+  "cases": [
+    {
+      "model": "finite_two",
+      "old_left_departures": 0,
+      "c": 0,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.28427374687499996,
+      "factorized_probability": 0.284273746875,
+      "unweighted_prefix_bound": 0.284273746875
+    },
+    {
+      "model": "finite_two",
+      "old_left_departures": 0,
+      "c": 1,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.420808756640625,
+      "factorized_probability": 0.420808756640625,
+      "unweighted_prefix_bound": 0.852821240625
+    },
+    {
+      "model": "finite_two",
+      "old_left_departures": 0,
+      "c": 2,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.457450962890625,
+      "factorized_probability": 0.457450962890625,
+      "unweighted_prefix_bound": 1.5324339953125001
+    },
+    {
+      "model": "finite_two",
+      "old_left_departures": 17,
+      "c": 0,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.28427374687499996,
+      "factorized_probability": 0.284273746875,
+      "unweighted_prefix_bound": 0.284273746875
+    },
+    {
+      "model": "finite_two",
+      "old_left_departures": 17,
+      "c": 1,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.420808756640625,
+      "factorized_probability": 0.420808756640625,
+      "unweighted_prefix_bound": 0.852821240625
+    },
+    {
+      "model": "finite_two",
+      "old_left_departures": 17,
+      "c": 2,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.45716546601562497,
+      "factorized_probability": 0.45716546601562497,
+      "unweighted_prefix_bound": 1.5324339953125001
+    },
+    {
+      "model": "periodic",
+      "old_left_departures": 0,
+      "c": 0,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.287717090625,
+      "factorized_probability": 0.287717090625,
+      "unweighted_prefix_bound": 0.287717090625
+    },
+    {
+      "model": "periodic",
+      "old_left_departures": 0,
+      "c": 1,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.42497117226562503,
+      "factorized_probability": 0.42497117226562503,
+      "unweighted_prefix_bound": 0.8631512718750001
+    },
+    {
+      "model": "periodic",
+      "old_left_departures": 0,
+      "c": 2,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.461632517578125,
+      "factorized_probability": 0.461632517578125,
+      "unweighted_prefix_bound": 1.5518615125
+    },
+    {
+      "model": "periodic",
+      "old_left_departures": 17,
+      "c": 0,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.287717090625,
+      "factorized_probability": 0.287717090625,
+      "unweighted_prefix_bound": 0.287717090625
+    },
+    {
+      "model": "periodic",
+      "old_left_departures": 17,
+      "c": 1,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.42497117226562503,
+      "factorized_probability": 0.42497117226562503,
+      "unweighted_prefix_bound": 0.8631512718750001
+    },
+    {
+      "model": "periodic",
+      "old_left_departures": 17,
+      "c": 2,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.461061523828125,
+      "factorized_probability": 0.461061523828125,
+      "unweighted_prefix_bound": 1.5518615125
+    },
+    {
+      "model": "blocks",
+      "old_left_departures": 0,
+      "c": 0,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.280857740625,
+      "factorized_probability": 0.280857740625,
+      "unweighted_prefix_bound": 0.280857740625
+    },
+    {
+      "model": "blocks",
+      "old_left_departures": 0,
+      "c": 1,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.416682791015625,
+      "factorized_probability": 0.416682791015625,
+      "unweighted_prefix_bound": 0.8425732218750001
+    },
+    {
+      "model": "blocks",
+      "old_left_departures": 0,
+      "c": 2,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.4533058582031251,
+      "factorized_probability": 0.45330585820312497,
+      "unweighted_prefix_bound": 1.5131567781250004
+    },
+    {
+      "model": "blocks",
+      "old_left_departures": 17,
+      "c": 0,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.280857740625,
+      "factorized_probability": 0.280857740625,
+      "unweighted_prefix_bound": 0.280857740625
+    },
+    {
+      "model": "blocks",
+      "old_left_departures": 17,
+      "c": 1,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.416682791015625,
+      "factorized_probability": 0.416682791015625,
+      "unweighted_prefix_bound": 0.8425732218750001
+    },
+    {
+      "model": "blocks",
+      "old_left_departures": 17,
+      "c": 2,
+      "horizon": 8,
+      "level": 3,
+      "direct_probability": 0.4533058582031251,
+      "factorized_probability": 0.45330585820312497,
+      "unweighted_prefix_bound": 1.5131567781250004
+    }
+  ],
+  "all_passed": true,
+  "elapsed_seconds": 1.9492736000102013,
+  "note": "Finite-horizon identities only; the general statement is Lemma 3.2 of the paper."
+}

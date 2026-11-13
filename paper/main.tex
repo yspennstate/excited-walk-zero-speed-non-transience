@@ -1,0 +1,379 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{doi:\nolinkurl{#1}}}
+\setlength{\emergencystretch}{2.5em}
+
+\title[Zero speed for excited random walk on the event of non-transience]{Zero speed for excited random walks on the event of non-transience}
+\author{Yitzchak Shmalo}
+\address{Yitzchak Shmalo, Tel Aviv University and Heights Labs}
+\email{yspennstate@gmail.com}
+\date{November 2026}
+\subjclass[2020]{60K35, 60K37, 60F15}
+\keywords{excited random walk, cookie random walk, law of large numbers, self-interacting random walk, zero-one law}
+
+\begin{document}
+\begin{abstract}
+An excited random walk on $\Z^d$ moves, on its $i$-th visit to a site $x$, according to the $i$-th entry of a stack of
+transition probabilities attached to $x$; the stacks are independent and identically distributed over the sites.
+Kosygina and Zerner asked whether $X_n/n\to0$ almost surely on the event that $|X_n|$ does not tend to infinity,
+assuming only that the stacks are i.i.d.\ and every entry is positive. We prove that it does, in every dimension and with
+no further restriction on the stacks, which may be infinite and may push in any direction. We also prove the
+excited-walk form of Zerner's law of large numbers for random walk in random environment: if, for a coordinate
+direction $e$, the walk tends to $+\infty$ and to $-\infty$ in direction $e$ with probability zero, then $X_n\cdot e/n\to0$
+almost surely. The strong Markov restart in Zerner's argument is replaced by a sum over the finitely many paths the
+walk can follow between its first and last visits to a level.
+\end{abstract}
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+Let $E=\{\pm e_1,\dots,\pm e_d\}$ be the unit vectors of $\Z^d$. A \emph{cookie environment} is a family
+$\omega=(\omega(x,a,i))_{x\in\Z^d,\,a\in E,\,i\ge1}$ with $\omega(x,a,i)\ge0$ and $\sum_{a\in E}\omega(x,a,i)=1$. The
+sequence $\omega(x,\cdot,\cdot)$ is the \emph{stack} at $x$. Given $\omega$ and $y\in\Z^d$, the excited random walk
+$(X_n)_{n\ge0}$ starts at $X_0=y$ and moves by
+\begin{equation}\label{eq:step}
+P_{y,\omega}\bigl(X_{n+1}=X_n+a\,\big|\,X_0,\dots,X_n\bigr)=\omega\bigl(X_n,a,\#\{0\le m\le n:X_m=X_n\}\bigr),\qquad a\in E,
+\end{equation}
+so on its $i$-th visit to a site the walk uses the $i$-th entry of that site's stack. The environment is random with
+law $\Prob$, and $P_y=\E[P_{y,\omega}]$ is the annealed law. We use the two assumptions of the survey of Kosygina and
+Zerner~\cite{KZ13}:
+\begin{itemize}
+\item[(IID)] the stacks $\omega(x,\cdot,\cdot)$, $x\in\Z^d$, are independent and identically distributed under $\Prob$;
+\item[(EL)] $\Prob$-almost surely, $\omega(x,a,i)>0$ for all $x$, $a$ and $i$.
+\end{itemize}
+Nothing else is assumed. There is no uniform lower bound in (EL), the entries of one stack need not be independent, and a
+stack may have infinitely many entries that differ from the simple random walk step, with drifts of either sign.
+
+For $\ell\in\R^d\setminus\{0\}$ let $A_\ell=\{X_n\cdot\ell\to+\infty\}$, and let
+\[
+N=\bigl\{|X_n|\not\to\infty\bigr\}
+\]
+be the event that the walk does not go to infinity, which we call non-transience. Kosygina and Zerner asked the following~\cite[Problem 4.7]{KZ13}.
+
+\medskip\noindent\textbf{Problem.} Assume (IID) and (EL), and let $\ell\in\R^d\setminus\{0\}$. Does $X_n\cdot\ell/n$
+converge to $0$ $P_0$-almost surely on $N$?
+
+\medskip
+For random walk in an i.i.d.\ elliptic random environment, which is the case in which $\omega(x,a,i)$ does not depend
+on $i$, Zerner~\cite[Theorem 1]{Zer02} proved the following: if $e\in E$ and $P_0(A_e\cup A_{-e})=0$, then
+$X_n\cdot e/n\to0$ $P_0$-almost surely. In dimension one, Amir, Berger and Orenshtein~\cite[Theorem 1.3]{ABO16} proved
+that $X_n/n$ converges almost surely to a deterministic limit for stationary ergodic elliptic stacks on $\Z$, infinite
+stacks included; when $P_0(N)>0$ the limit is zero, since on $N$ the walk visits some site infinitely often. We answer
+the problem in every dimension.
+
+\begin{theorem}\label{thm:main}
+Let $d\ge1$ and assume (IID) and (EL). Then $X_n/n\to0$ $P_0$-almost surely on $N$. If $P_0(N)>0$, then $X_n/n\to0$
+$P_0$-almost surely.
+\end{theorem}
+
+The main step is the following one-sided statement, which holds for every coordinate direction separately.
+
+\begin{proposition}\label{prop:onesided}
+Assume (IID) and (EL), and let $e\in E$. If $P_0(A_e)=0$, then $\limsup_{n}X_n\cdot e/n\le0$ $P_0$-almost surely.
+\end{proposition}
+
+Applied to $e$ and to $-e$, Proposition~\ref{prop:onesided} gives the excited-walk form of Zerner's theorem.
+
+\begin{corollary}\label{cor:zerner}
+Assume (IID) and (EL), and let $e\in E$. If $P_0(A_e\cup A_{-e})=0$, then $X_n\cdot e/n\to0$ $P_0$-almost surely.
+\end{corollary}
+
+When the stacks are constant in $i$ this is~\cite[Theorem 1]{Zer02}. When $P_0(N)>0$, the zero-one
+law~\cite[Theorem 3.16]{KZ13} gives $P_0(A_e\cup A_{-e})=0$ for every $e\in E$, and Theorem~\ref{thm:main} follows; the
+deduction is in Section~\ref{sec:proof}.
+
+\medskip\noindent\textbf{The idea of the proof.} Zerner's proof has two parts. Fix $e\in E$, call
+$\{x:x\cdot e=m\}$ level $m$, let $T_m$ be the first time the walk is at level $m$, and, for an integer $L\ge1$, let
+$h_{m,L}$ be the time from $T_m$ to the last visit to level $m$ before $T_{m+L}$. The first part concerns a single
+path~\cite[Lemma 3]{Zer02}: if $\limsup_nX_n\cdot e/n>0$, then for some integer $c$ and every $L$ the levels $m$ with
+$h_{m,L}\le c$ have positive upper density. The second part bounds the probability that $h_{m,L}\le c$. At the last
+visit to level $m$ the walk is at one of finitely many sites $z$, for the $r$-th time with $r\le c$, and by the strong
+Markov property its law from then on is $P_{z,\omega}$; the probability that it then reaches level $m+L$ without
+returning to level $m$ involves only the environment at levels $\ge m$, which the walk has not seen at time $T_m$.
+
+For an excited walk the second part fails. After the $r$-th visit to $z$ the law of the walk depends on which entries
+of the stacks at $z$, and at the other sites visited since $T_m$, have been used, and this is not a function of $z$ and
+$r$. We keep the whole path between $T_m$ and the last visit instead. Let $\Pi_c$ be the set of nearest-neighbour paths
+$p=(p_0,\dots,p_s)$ with $p_0=0$, $s\le c$ and $p_s\cdot e=0$, which is finite, and let $\omega^p$ be the environment
+obtained from $\omega$ by deleting from each stack the entries used along $p$. Bounding the probability of following
+$p$ by one, we obtain under (IID) alone, for all $m\ge0$ and $L>c$,
+\[
+P_0\bigl(T_{m+L}<\infty,\ h_{m,L}\le c\,\big|\,X_0,\dots,X_{T_m}\bigr)\le
+\sum_{p\in\Pi_c}\E\Bigl[P_{p_s,\omega^p}\bigl(T_L<\infty,\ X_n\cdot e>0\text{ for }1\le n\le T_L\bigr)\Bigr]
+\]
+on $\{T_m<\infty\}$, where $T_L$ is the first time the walk started at $p_s$ is at level $L$ (Lemma~\ref{lem:fresh}). The right side depends neither on $m$ nor on the path up to time $T_m$. If
+$P_0(A_e)=0$, it tends to $0$ as $L\to\infty$ for each $c$ (Lemma~\ref{lem:prefix}), so the levels with $h_{m,L}\le c$
+have upper density at most this bound, and Zerner's lemma gives Proposition~\ref{prop:onesided}.
+
+\medskip\noindent\textbf{Related work.} Excited random walk was introduced by Benjamini and Wilson~\cite{BW03}, with one
+cookie of drift in direction $e_1$ at each site. Zerner~\cite{Zer06} and Menshikov, Popov, Ram\'irez and
+Vachkovskaia~\cite{MPRV12} studied walks whose drifts point into a half-space, and B\'erard and Ram\'irez~\cite{BR07} proved
+a central limit theorem for the Benjamini--Wilson walk; in these models the walk is transient and $P_0(N)=0$. The laws of
+large numbers of Holmes~\cite{Hol12} and Pham~\cite{Pha15} in high dimensions assume simple transverse steps.
+Theorem~4.8 of the survey~\cite{KZ13} proves a law of large numbers under the assumption $P_0(A_{\ell_i}\cup
+A_{-\ell_i})=1$ for a basis $\ell_1,\dots,\ell_d$, which the survey relates to Problem~4.7; Corollary~\ref{cor:zerner}
+covers a coordinate direction in which this probability is $0$. In dimension one, besides~\cite{ABO16}, infinite stacks
+were treated by Kosygina and Peterson~\cite{KP17} for Markovian stacks. A table of notation is in
+Appendix~\ref{app:notation}.
+
+\section{Preliminaries}\label{sec:prelim}
+
+\subsection{Results from the survey}
+We use three results of~\cite{KZ13}, each proved there under (IID) and (EL).
+
+\begin{itemize}
+\item[(R1)] \cite[Theorem 2.5]{KZ13} The range $\{X_n:n\ge0\}$ is either $P_0$-almost surely finite or
+$P_0$-almost surely infinite.
+\item[(R2)] \cite[Lemma 3.18]{KZ13} If the range is $P_0$-almost surely infinite, then for every
+$\ell\in\R^d\setminus\{0\}$ and all real $u<w$, the walk almost surely does not stay in the half-space
+$\{x:x\cdot\ell\le w\}$ forever while visiting the slab $\{x:u\le x\cdot\ell\le w\}$ infinitely often.
+\item[(R3)] \cite[Theorem 3.16]{KZ13} For every $\ell\in\R^d\setminus\{0\}$, $P_0(A_\ell\cup A_{-\ell})\in\{0,1\}$.
+\end{itemize}
+The survey states (R2) under (IID) and $\E[\omega(0,e,1)]>0$ for all $e\in E$, which (EL) implies. We use (R2) only with
+$\ell$ a coordinate vector and $u,w$ integers.
+
+\begin{lemma}\label{lem:onesidedpaths}
+Assume (IID) and (EL), suppose the range is $P_0$-almost surely infinite, and let $e\in E$. Then
+\[
+P_0\Bigl(\inf_n X_n\cdot e>-\infty,\ X_n\cdot e\not\to+\infty\Bigr)=0 .
+\]
+\end{lemma}
+
+\begin{proof}
+On the event in question there are integers $a<b$ such that $X_n\cdot e\ge a$ for all $n$ and $X_n\cdot e\le b$ for
+infinitely many $n$. For fixed $a<b$ this is the event of (R2) with $\ell=-e$, $w=-a$ and $u=-b$, which is null. Take the
+union over the countably many pairs $(a,b)$.
+\end{proof}
+
+\subsection{The counting lemma}
+For a nearest-neighbour path $(x_n)_{n\ge0}$ in $\Z^d$ with $x_0\cdot e=0$, a direction $e\in E$ and integers $m\ge0$,
+$L\ge1$, write
+\[
+T_m=\inf\{n\ge0:x_n\cdot e=m\},\qquad I_{m,L}=\{n:T_m\le n<T_{m+L},\ x_n\cdot e=m\},
+\]
+and, when $T_{m+L}<\infty$, $h_{m,L}=\max I_{m,L}-T_m$; otherwise $h_{m,L}=\infty$. Thus $h_{m,L}$ is the time from the
+first visit to level $m$ to the last visit to level $m$ before level $m+L$ is reached. For an integer $c\ge0$ put
+\[
+F_{M,L}(c)=\frac1{M+1}\sum_{m=0}^{M}\mathbf 1\{h_{m,L}\le c\}.
+\]
+Since $h_{m,L}$ does not decrease in $L$, $F_{M,L}(c)$ does not increase in $L$. The next lemma is the deterministic
+part of Zerner's argument; it concerns a single path and its proof in~\cite{Zer02} uses no property of the environment.
+
+\begin{lemma}[{\cite[Lemma 3]{Zer02}}]\label{lem:counting}
+If $\limsup_n x_n\cdot e/n>0$, then there is an integer $c\ge0$ with
+\[
+\inf_{L\ge1}\,\limsup_{M\to\infty}F_{M,L}(c)>0 .
+\]
+\end{lemma}
+
+\section{The estimate at a new level}\label{sec:fresh}
+
+Fix $e\in E$. For an integer $c\ge0$ let $\Pi_c$ be the finite set of nearest-neighbour paths $p=(p_0,\dots,p_s)$ with
+$p_0=0$, $s\le c$ and $p_s\cdot e=0$. For such a path let $k_p(x)=\#\{0\le t<s:p_t=x\}$ be the number of departures
+from $x$ along $p$, and let $\omega^p(x,a,i)=\omega(x,a,i+k_p(x))$ be the environment with those entries removed. The
+endpoint $p_s$ has not been left along $p$ after its last visit, so its next entry is not removed. For $L>c$ define
+\[
+q_L^p(\omega)=P_{p_s,\omega^p}\bigl(T_L<D\bigr),\qquad D=\inf\{n\ge1:X_n\cdot e\le0\},
+\]
+where $T_L$ is the hitting time of level $L$ by the walk started at $p_s$. On $\{T_L<D\}$ the walk leaves level $0$ at
+its first step and stays strictly above it until it reaches level $L$, so $q_L^p$ depends only on the stacks at sites
+$x$ with $x\cdot e\ge0$, even if $p$ itself visits negative levels. As $L$ increases, $q_L^p$ decreases to
+\[
+q_\infty^p(\omega)=P_{p_s,\omega^p}\Bigl(X_n\cdot e>0\text{ for all }n\ge1\text{ and }\sup_nX_n\cdot e=\infty\Bigr),
+\]
+the probability of reaching every level without returning to level $0$. Put
+\[
+a_L(c)=\sum_{p\in\Pi_c}\E\bigl[q_L^p\bigr],\qquad L>c .
+\]
+
+\begin{lemma}\label{lem:prefix}
+Assume (IID) and (EL), suppose the range is $P_0$-almost surely infinite, and suppose $P_0(A_e)=0$. Then for every
+$c\ge0$, $a_L(c)\to0$ as $L\to\infty$.
+\end{lemma}
+
+\begin{proof}
+Fix $p\in\Pi_c$ and let $w_p(\omega)=P_{0,\omega}\bigl((X_0,\dots,X_s)=p\bigr)$, a finite product of entries of
+$\omega$, which is positive $\Prob$-almost surely by (EL). After following $p$ the walk sits at $p_s$ with exactly the
+entries $\omega^p$ left, so by~\eqref{eq:step}, $w_p\,q_\infty^p$ is the probability under $P_{0,\omega}$ that the walk follows $p$
+and afterwards stays strictly above level $0$ and reaches every level. On this event $X_n\cdot e\ge-c$ for all $n$,
+so by Lemma~\ref{lem:onesidedpaths} the event is contained in $A_e$ up to a $P_0$-null set. Hence
+$\E[w_pq_\infty^p]\le P_0(A_e)=0$, and since $w_p>0$ almost surely, $q_\infty^p=0$ almost surely. By monotone
+convergence $\E[q_L^p]\to0$, and $\Pi_c$ is finite.
+\end{proof}
+
+\begin{lemma}\label{lem:fresh}
+Assume (IID). Let $m\ge0$, $c\ge0$ and $L>c$, let $\mathcal F_n=\sigma(X_0,\dots,X_n)$, and let
+\[
+B_{m,L,c}=\{T_{m+L}<\infty,\ h_{m,L}\le c\}.
+\]
+Then $P_0(B_{m,L,c}\mid\mathcal F_{T_m})\le a_L(c)$ on $\{T_m<\infty\}$.
+\end{lemma}
+
+\begin{proof}
+Fix a finite path $\eta=(\eta_0,\dots,\eta_t)$ with $\eta_0=0$ that reaches level $m$ for the first time at its last
+step, and let $x=\eta_t$. Before time $t$ the walk has left only sites at levels below $m$, so the probability
+of $\eta$ under $P_{0,\omega}$ is a product of entries of stacks at sites $y$ with $y\cdot e<m$. By (IID), conditionally on
+$\{(X_0,\dots,X_t)=\eta\}$ the stacks at sites $y$ with $y\cdot e\ge m$ keep their original joint law.
+
+On $B_{m,L,c}\cap\{(X_0,\dots,X_t)=\eta\}$ let $t+s$ be the last visit to level $m$ before $T_{m+L}$, so $s\le c$, and
+let $p=(X_{t+r}-x)_{0\le r\le s}$. Then $p\in\Pi_c$, and since $L>c$ the walk has not reached level $m+L$ by time $t+s$.
+The event is the disjoint union over $p\in\Pi_c$ of the events that the walk follows $x+p$ from time $t$ and then
+reaches level $m+L$ before returning to level $m$. Given the environment, by~\eqref{eq:step} the probability of the
+second part, given the first, is $q_L^p(\theta_x\omega')$, where $\omega'$ is the environment with the entries used by
+$\eta$ removed and $(\theta_x\omega')(z,a,i)=\omega'(x+z,a,i)$. As noted above, $q_L^p$ reads only stacks at levels
+$\ge m$ after the shift, and these were not touched by $\eta$, so $q_L^p(\theta_x\omega')=q_L^p(\theta_x\omega)$.
+Writing $W^p_\eta(\omega)\le1$ for the conditional probability of following $x+p$, we get
+\[
+P_{0,\omega}\bigl(B_{m,L,c}\,\big|\,(X_0,\dots,X_t)=\eta\bigr)=\sum_{p\in\Pi_c}W^p_\eta(\omega)\,q_L^p(\theta_x\omega)
+\le\sum_{p\in\Pi_c}q_L^p(\theta_x\omega).
+\]
+The right side depends only on the stacks at levels $\ge m$. Averaging over the environment conditionally on $\eta$,
+these stacks have their original law, and by translation invariance of that law $\E[q_L^p\circ\theta_x]=\E[q_L^p]$.
+This gives the bound $a_L(c)$ for every $\eta$, which is the claim.
+\end{proof}
+
+\section{Proof of Proposition~\ref{prop:onesided}}\label{sec:onesided}
+
+If the range is $P_0$-almost surely finite, then $X_n$ is bounded and $X_n/n\to0$, so by (R1) we may assume that it is almost surely
+infinite. Suppose $P_0(A_e)=0$.
+
+Fix $c\ge0$, $L>c$ and a residue $r\in\{0,\dots,L-1\}$, and put $m_k=r+kL$, $\mathcal G_k=\mathcal F_{T_{m_k}}$ and
+$Z_k=\mathbf 1_{B_{m_k,L,c}}$, with the convention that $\mathcal F_{T}=\mathcal F_\infty$ on $\{T=\infty\}$. The event
+$B_{m_k,L,c}$ is determined by the path up to $T_{m_k+L}=T_{m_{k+1}}$, so $Z_k$ is $\mathcal G_{k+1}$-measurable, and
+$Z_k-E_0[Z_k\mid\mathcal G_k]$ is a bounded martingale difference sequence. By the strong law of large numbers for such
+sequences and Lemma~\ref{lem:fresh},
+\[
+\limsup_{K\to\infty}\frac1K\sum_{k<K}Z_k\le a_L(c)\qquad P_0\text{-a.s.}
+\]
+If some $T_{m_k}$ is infinite then $Z_j=0$ for all $j\ge k$ and the bound holds trivially. Averaging over the $L$
+residues and intersecting over the countably many pairs $(c,L)$, almost surely, for all $c\ge0$ and $L>c$,
+\begin{equation}\label{eq:freq}
+\limsup_{M\to\infty}\frac1{M+1}\sum_{m=0}^{M}\mathbf 1_{B_{m,L,c}}\le a_L(c).
+\end{equation}
+
+Now take a path in the almost sure event of~\eqref{eq:freq} with $\limsup_nX_n\cdot e/n>0$. Every level is reached,
+so $\mathbf 1_{B_{m,L,c}}=\mathbf 1\{h_{m,L}\le c\}$ and the left side of~\eqref{eq:freq} is $\limsup_MF_{M,L}(c)$. By
+Lemma~\ref{lem:prefix}, $\inf_{L>c}\limsup_MF_{M,L}(c)=0$ for every $c$; since $F_{M,L}(c)$ does not increase in $L$,
+the infimum over all $L\ge1$ is also zero. This contradicts Lemma~\ref{lem:counting}. Hence
+$\limsup_nX_n\cdot e/n\le0$ almost surely. \qed
+
+\section{Proofs of Corollary~\ref{cor:zerner} and Theorem~\ref{thm:main}}\label{sec:proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:zerner}]
+If $P_0(A_e\cup A_{-e})=0$, then $P_0(A_e)=P_0(A_{-e})=0$. Proposition~\ref{prop:onesided}, applied to $e$ and to $-e$,
+gives $\limsup_nX_n\cdot e/n\le0$ and $\liminf_nX_n\cdot e/n\ge0$ almost surely.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If $P_0(N)=0$ there is nothing to prove. Suppose $P_0(N)>0$ and let $j\in\{1,\dots,d\}$. On $A_{e_j}\cup A_{-e_j}$ we
+have $|X_n|\to\infty$, so $N$ is disjoint from it and $P_0(A_{e_j}\cup A_{-e_j})<1$. By (R3) this probability is $0$,
+and Corollary~\ref{cor:zerner} gives $X_n\cdot e_j/n\to0$ almost surely. Hence $X_n/n\to0$ $P_0$-almost surely, and in
+particular on $N$.
+\end{proof}
+
+\begin{remark}
+The event $N$ need not be the event that every site is visited infinitely
+often. For instance, in $d=2$ give each site an independent uniformly chosen $a\in E$, and let the $i$-th entry of its stack put
+mass $1-3\varepsilon_i$ on $a$ and $\varepsilon_i=2^{-i-4}$ on each other direction. With positive probability the
+directions at $0$ and $e_1$ point at each other and the walk moves back and forth between these two sites forever, since
+\[
+\frac1{16}\prod_{i\ge1}\bigl(1-3\cdot2^{-i-4}\bigr)^2>0 .
+\]
+This environment satisfies (IID) and (EL), and on that event the speed is zero, as Theorem~\ref{thm:main} requires.
+\end{remark}
+
+\section*{Acknowledgements and funding}
+This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI), connected to Math
+Brain~\cite{MathBrainRepo} and working together inside the Brain framework~\cite{BrainFramework}, a shared, persistent
+memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results,
+coordinate who works on what, and audit each other's work. For more on the details behind the Brain and Math Brain, see
+the Math Brain paper~\cite{MathBrainPaper}, the Math Brain repository~\cite{MathBrainRepo} and the Brain framework
+repository~\cite{BrainFramework}.
+
+The research presented in this paper was supported by the European Research Council (ERC) under the European Union's
+Horizon Europe research and innovation programme (grant agreement No.~101041711), by the Simons Foundation as part of
+the Collaboration on the Mathematical and Scientific Foundations of Deep Learning, by Heights Labs, by Convex Nexus
+Capital, by the Israel Science Foundation (grant number 2258/19), and by the Israel Science Foundation (ISF Grant
+4101/25). Computational resources were provided in part by Google Cloud through its education credits program (credit
+530550103).
+
+\section*{Declaration of competing interest}
+The author holds equity in Heights Labs and in Convex Nexus Capital and has a management role at Convex Nexus Capital.
+These entities are included in the funding declaration above.
+
+\section*{Declaration of generative AI and AI-assisted technologies}
+A Codex agent (OpenAI) proved Theorem~\ref{thm:main}; a second Codex agent checked the proof as a referee; a Claude
+agent (Anthropic) checked the steps and prepared the manuscript. The author directed the work and is
+responsible for the content of the paper and for decisions concerning its dissemination.
+
+\section*{Code availability}
+Exact finite-horizon checks of the decomposition in Lemma~\ref{lem:fresh}, checks of the averages in
+Lemma~\ref{lem:counting} on random paths, and a simulation of the example in the closing remark are in the repository
+\begin{center}\url{https://github.com/yspennstate/excited-walk-zero-speed-non-transience}.\end{center}
+
+\begin{thebibliography}{99}
+\bibitem{ABO16} G.~Amir, N.~Berger and T.~Orenshtein, Zero-one law for directional transience of one dimensional excited
+random walks, \emph{Ann. Inst. Henri Poincar\'e Probab. Stat.} \textbf{52} (2016), 47--57, \doi{10.1214/14-AIHP615}.
+\bibitem{BR07} J.~B\'erard and A.~F.~Ram\'irez, Central limit theorem for the excited random walk in dimension
+$d\ge2$, \emph{Electron. Commun. Probab.} \textbf{12} (2007), 303--314, \doi{10.1214/ECP.v12-1317}.
+\bibitem{BW03} I.~Benjamini and D.~B.~Wilson, Excited random walk, \emph{Electron. Commun. Probab.} \textbf{8} (2003),
+86--92, \doi{10.1214/ECP.v8-1072}.
+\bibitem{Hol12} M.~Holmes, Excited against the tide: a random walk with competing drifts, \emph{Ann. Inst. Henri
+Poincar\'e Probab. Stat.} \textbf{48} (2012), 745--773, \doi{10.1214/11-AIHP434}.
+\bibitem{KP17} E.~Kosygina and J.~Peterson, Excited random walks with Markovian cookie stacks, \emph{Ann. Inst. Henri
+Poincar\'e Probab. Stat.} \textbf{53} (2017), 1458--1497, \doi{10.1214/16-AIHP761}.
+\bibitem{KZ13} E.~Kosygina and M.~P.~W.~Zerner, Excited random walks: results, methods, open problems, \emph{Bull. Inst.
+Math. Acad. Sin. (N.S.)} \textbf{8} (2013), 105--157, arXiv:1204.1895.
+\bibitem{MPRV12} M.~Menshikov, S.~Popov, A.~F.~Ram\'irez and M.~Vachkovskaia, On a general many-dimensional excited
+random walk, \emph{Ann. Probab.} \textbf{40} (2012), 2106--2130, \doi{10.1214/11-AOP678}.
+\bibitem{Pha15} C.-D.~Pham, Monotonicity and regularity of the speed for excited random walks in higher dimensions,
+\emph{Electron. J. Probab.} \textbf{20} (2015), paper no.~72, \doi{10.1214/EJP.v20-3522}.
+\bibitem{Zer02} M.~P.~W.~Zerner, A non-ballistic law of large numbers for random walks in i.i.d.\ random environment,
+\emph{Electron. Commun. Probab.} \textbf{7} (2002), 191--197, \doi{10.1214/ECP.v7-1060}.
+\bibitem{Zer06} M.~P.~W.~Zerner, Recurrence and transience of excited random walks on $\Z^d$ and strips,
+\emph{Electron. Commun. Probab.} \textbf{11} (2006), 118--128, \doi{10.1214/ECP.v11-1200}.
+\bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026,
+\url{https://github.com/yspennstate/math-brain-public}.
+\bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research},
+October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24}.
+\bibitem{BrainFramework} Y.~Shmalo, \emph{Brain Framework}, public software repository, 2026,
+\url{https://github.com/yspennstate/brain-framework-public}.
+\end{thebibliography}
+
+\appendix
+\section{Notation}\label{app:notation}
+\begin{center}
+\small
+\begin{tabular}{@{}lp{0.6\textwidth}l@{}}
+\toprule
+Symbol & Meaning & First appears\\
+\midrule
+$E$ & the $2d$ unit vectors of $\Z^d$ & Section~\ref{sec:intro}\\
+$\omega(x,a,i)$ & probability of step $a$ on the $i$-th visit to $x$ & Section~\ref{sec:intro}\\
+$P_{y,\omega}$, $P_y$, $\Prob$ & quenched law, annealed law, law of the environment & \eqref{eq:step}\\
+$A_\ell$ & the event $X_n\cdot\ell\to+\infty$ & Section~\ref{sec:intro}\\
+$N$ & the event $|X_n|\not\to\infty$ & Section~\ref{sec:intro}\\
+$T_m$, $I_{m,L}$, $h_{m,L}$ & first hitting time of level $m$, visits to level $m$ before level $m+L$, time from $T_m$ to the last of them & Section~\ref{sec:prelim}\\
+$F_{M,L}(c)$ & fraction of levels $m\le M$ with $h_{m,L}\le c$ & Section~\ref{sec:prelim}\\
+$\Pi_c$, $k_p$, $\omega^p$ & short paths, their departure counts, the environment with their cookies removed & Section~\ref{sec:fresh}\\
+$q_L^p$, $q_\infty^p$, $D$ & chance of reaching level $L$ before returning to level $0$, its limit, the return time & Section~\ref{sec:fresh}\\
+$a_L(c)$ & $\sum_{p\in\Pi_c}\E[q_L^p]$ & Section~\ref{sec:fresh}\\
+$B_{m,L,c}$, $\mathcal F_n$ & the event $T_{m+L}<\infty$, $h_{m,L}\le c$; the natural filtration & Lemma~\ref{lem:fresh}\\
+$W^p_\eta$, $\theta_x$ & probability of following $x+p$ after $\eta$; the shift by $x$ & Lemma~\ref{lem:fresh}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}
