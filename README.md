@@ -6,7 +6,7 @@ Paper: [paper/main.pdf](paper/main.pdf) (source [paper/main.tex](paper/main.tex)
 
 ## Summary
 
-An excited (cookie) random walk on Z^d uses, on its i-th visit to a site, the i-th transition probability in a stack
+An excited random walk on Z^d uses, on its i-th visit to a site, the i-th transition probability in a stack
 attached to that site; the stacks are i.i.d. over the sites. Kosygina and Zerner (Problem 4.7 of their 2013 survey)
 asked whether X_n/n tends to 0 almost surely on the event that |X_n| does not tend to infinity, assuming only that
 the stacks are i.i.d. and every transition probability is positive. The paper proves that it does, in every dimension d >= 2
@@ -19,7 +19,7 @@ under the same two assumptions (Corollary 1.4), and the limit lies in {v, -cv} f
 assumption on a basis of directions (Corollary 1.5).
 
 Zerner applies the strong Markov property at the visits of the walk to the sites of a level. For an excited walk the
-law after such a visit depends on which cookies have been used, and the paper replaces that step by a sum over the
+law after such a visit depends on which entries of the stacks have been used, and the paper replaces that step by a sum over the
 finitely many paths the walk can follow between its first and last visits to a level.
 
 ## Code
@@ -27,7 +27,7 @@ finitely many paths the walk can follow between its first and last visits to a l
 Python 3, standard library only. Run from the repository root.
 
 * `code/check_decomposition.py` checks, exactly and on finite horizons, the sum over the paths of Pi_c in the proof of
-  Lemma 3.2 for three cookie stacks on Z^2, and writes `data/decomposition_checks.json`.
+  Lemma 3.2 for three stacks on Z^2, and writes `data/decomposition_checks.json`.
 * `code/check_counting_and_trap.py` checks the two averages bounded in the proof of Zerner's lemma
   (Lemma 2.2 of the paper, Lemma 3 of Zerner 2002) on random paths, and
   simulates the two-site trapping example of Remark 5.1; it writes `data/counting_and_trap.json`.
