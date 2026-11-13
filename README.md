@@ -27,7 +27,7 @@ Python 3, standard library only. Run from the repository root.
   Lemma 3.2 for three cookie stacks on Z^2, and writes `data/decomposition_checks.json`.
 * `code/check_counting_and_trap.py` checks the two averages bounded in the proof of Zerner's counting lemma
   (Lemma 2.2 of the paper, Lemma 3 of Zerner 2002) on random paths, and
-  simulates the two-site trapping example of the closing remark; it writes `data/counting_and_trap.json`.
+  simulates the two-site trapping example of Remark 5.1; it writes `data/counting_and_trap.json`.
 
 `SHA256SUMS` lists the checksums of every file in the repository.
 

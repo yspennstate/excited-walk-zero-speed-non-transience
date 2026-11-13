@@ -1,4 +1,4 @@
-"""Finite checks of the averages in the counting lemma (Lemma 2.2, from Zerner 2002, Lemma 3) and of the trapping example in the closing remark."""
+"""Finite checks of the averages in the counting lemma (Lemma 2.2, from Zerner 2002, Lemma 3) and of the trapping example in Remark 5.1."""
 import json
 import math
 import os
@@ -58,7 +58,7 @@ def check_counts():
 
 
 def trap_check():
-    """Simulate the two-site trapping event of the closing remark, stopping at the first deviation."""
+    """Simulate the two-site trapping event of Remark 5.1, stopping at the first deviation."""
     rng = random.Random(SEED+2)
     trials = 20000
     cookies = 80

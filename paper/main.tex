@@ -1,7 +1,7 @@
 \documentclass[11pt]{amsart}
 \usepackage{amsmath,amssymb,amsthm,booktabs}
 \usepackage[margin=1.15in]{geometry}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -47,7 +47,8 @@ $(X_n)_{n\ge0}$ starts at $X_0=y$ and moves by
 P_{y,\omega}\bigl(X_{n+1}=X_n+a\,\big|\,X_0,\dots,X_n\bigr)=\omega\bigl(X_n,a,\#\{0\le m\le n:X_m=X_n\}\bigr),\qquad a\in E,
 \end{equation}
 so on its $i$-th visit to a site the walk uses the $i$-th entry of that site's stack. The environment is random with
-law $\Prob$, and $P_y=\E[P_{y,\omega}]$ is the annealed law. We use the two assumptions of the survey of Kosygina and
+law $\Prob$, and $P_y=\E[P_{y,\omega}]$ is the annealed law, where $\E$ is expectation with respect to $\Prob$; $E_y$
+is expectation with respect to $P_y$. We use the two assumptions of the survey of Kosygina and
 Zerner~\cite{KZ13}:
 \begin{itemize}
 \item[(IID)] the stacks $\omega(x,\cdot,\cdot)$, $x\in\Z^d$, are independent and identically distributed under $\Prob$;
@@ -94,28 +95,35 @@ When the stacks are constant in $i$ this is~\cite[Theorem 1]{Zer02}. When $P_0(N
 law~\cite[Theorem 3.16]{KZ13} gives $P_0(A_e\cup A_{-e})=0$ for every $e\in E$, and Theorem~\ref{thm:main} follows; the
 deduction is in Section~\ref{sec:proof}.
 
-\medskip\noindent\textbf{The idea of the proof.} Zerner's proof has two parts. Fix $e\in E$, call
-$\{x:x\cdot e=m\}$ level $m$, let $T_m$ be the first time the walk is at level $m$, and, for an integer $L\ge1$, let
-$h_{m,L}$ be the time from $T_m$ to the last visit to level $m$ before $T_{m+L}$. The first part concerns a single
-path~\cite[Lemma 3]{Zer02}: if $\limsup_nX_n\cdot e/n>0$, then for some integer $c$ and every $L$ the levels $m$ with
-$h_{m,L}\le c$ have positive upper density. The second part bounds the probability that $h_{m,L}\le c$. At the last
-visit to level $m$ the walk is at one of finitely many sites $z$, for the $r$-th time with $r\le c$, and by the strong
-Markov property its law from then on is $P_{z,\omega}$; the probability that it then reaches level $m+L$ without
-returning to level $m$ involves only the environment at levels $\ge m$, which the walk has not seen at time $T_m$.
+\medskip\noindent\textbf{The idea of the proof.} Fix $e\in E$, call $\{x:x\cdot e=m\}$ level $m$, let $T_m$ be the
+first time the walk is at level $m$, and for an integer $L\ge1$ let $h_{m,L}$ be the time from $T_m$ to the last visit
+to level $m$ before $T_{m+L}$. Zerner's proof has two parts. By~\cite[Lemma 3]{Zer02}, a statement about a single path,
+if $\limsup_nX_n\cdot e/n>0$ then there is an integer $c$ such that, for every $L$, the upper density
+\[
+\limsup_{M\to\infty}\frac1{M+1}\,\#\{0\le m\le M:\ h_{m,L}\le c\}
+\]
+of the levels $m$ with $h_{m,L}\le c$ is bounded below by a positive constant that does not depend on $L$. The second
+part bounds the probability that $h_{m,L}\le c$. At its last visit to level $m$ the walk is at one of finitely many
+sites $z$, for the $r$-th time with $r\le c+1$; the $r$-th visit to $z$ is a stopping time, and by the strong Markov
+property the walk has law $P_{z,\omega}$ from then on. The probability that it then reaches level $m+L$ without
+returning to level $m$ depends only on the environment at levels $\ge m$, which is independent of the path up to time
+$T_m$.
 
-For an excited walk the second part fails. After the $r$-th visit to $z$ the law of the walk depends on which entries
-of the stacks at $z$, and at the other sites visited since $T_m$, have been used, and this is not a function of $z$ and
-$r$. We keep the whole path between $T_m$ and the last visit instead. Let $\Pi_c$ be the set of nearest-neighbour paths
-$p=(p_0,\dots,p_s)$ with $p_0=0$, $s\le c$ and $p_s\cdot e=0$, which is finite, and let $\omega^p$ be the environment
-obtained from $\omega$ by deleting from each stack the entries used along $p$. Bounding the probability of following
-$p$ by one, we obtain under (IID) alone, for all $m\ge0$ and $L>c$,
+For an excited walk the law after the $r$-th visit to $z$ is not $P_{z,\omega}$. It depends on which entries of the
+stacks at $z$, and at the other sites visited since $T_m$, have been used, and this is not determined by $z$ and $r$.
+It is determined by the path of the walk from $T_m$ to that visit. Let $\Pi_c$ be the finite set of nearest-neighbour
+paths $p=(p_0,\dots,p_s)$ with $p_0=0$, $s\le c$ and $p_s\cdot e=0$, and let $\omega^p$ be the environment obtained
+from $\omega$ by deleting from each stack the entries used along $p$. Bounding by one the probability that the walk
+follows $p$ after $T_m$, we obtain under (IID) alone, for all $m\ge0$ and $L>c$, on $\{T_m<\infty\}$,
 \[
 P_0\bigl(T_{m+L}<\infty,\ h_{m,L}\le c\,\big|\,X_0,\dots,X_{T_m}\bigr)\le
 \sum_{p\in\Pi_c}\E\Bigl[P_{p_s,\omega^p}\bigl(T_L<\infty,\ X_n\cdot e>0\text{ for }1\le n\le T_L\bigr)\Bigr]
 \]
-on $\{T_m<\infty\}$, where $T_L$ is the first time the walk started at $p_s$ is at level $L$ (Lemma~\ref{lem:fresh}). The right side depends neither on $m$ nor on the path up to time $T_m$. If
-$P_0(A_e)=0$, it tends to $0$ as $L\to\infty$ for each $c$ (Lemma~\ref{lem:prefix}), so the levels with $h_{m,L}\le c$
-have upper density at most this bound, and Zerner's lemma gives Proposition~\ref{prop:onesided}.
+(Lemma~\ref{lem:fresh}). The right side depends neither on $m$ nor on the path up to time $T_m$. Each term decreases,
+as $L\to\infty$, to the expected probability that the walk in $\omega^p$ started at $p_s$ stays above level $0$ and
+reaches every level, and under (EL) this is zero when $P_0(A_e)=0$ (Lemma~\ref{lem:prefix}). Hence, almost surely, the
+upper density of the levels $m$ with $h_{m,L}\le c$ is at most the right side, which tends to $0$ as $L\to\infty$ for
+each $c$, and Zerner's lemma gives $\limsup_nX_n\cdot e/n\le0$.
 
 \medskip\noindent\textbf{Related work.} Excited random walk was introduced by Benjamini and Wilson~\cite{BW03}, with one
 cookie of drift in direction $e_1$ at each site. Zerner~\cite{Zer06} and Menshikov, Popov, Ram\'irez and
@@ -158,13 +166,13 @@ union over the countably many pairs $(a,b)$.
 \end{proof}
 
 \subsection{The counting lemma}
-For a nearest-neighbour path $(x_n)_{n\ge0}$ in $\Z^d$ with $x_0\cdot e=0$, a direction $e\in E$ and integers $m\ge0$,
-$L\ge1$, write
+The quantities $T_m$ and $h_{m,L}$ of Section~\ref{sec:intro} are defined for every nearest-neighbour path
+$(x_n)_{n\ge0}$ in $\Z^d$ with $x_0\cdot e=0$, a direction $e\in E$ and integers $m\ge0$, $L\ge1$; in formulas,
 \[
 T_m=\inf\{n\ge0:x_n\cdot e=m\},\qquad I_{m,L}=\{n:T_m\le n<T_{m+L},\ x_n\cdot e=m\},
 \]
-and, when $T_{m+L}<\infty$, $h_{m,L}=\max I_{m,L}-T_m$; otherwise $h_{m,L}=\infty$. Thus $h_{m,L}$ is the time from the
-first visit to level $m$ to the last visit to level $m$ before level $m+L$ is reached. For an integer $c\ge0$ put
+and $h_{m,L}=\max I_{m,L}-T_m$ when $T_{m+L}<\infty$, with the convention $h_{m,L}=\infty$ otherwise. For an integer
+$c\ge0$ put
 \[
 F_{M,L}(c)=\frac1{M+1}\sum_{m=0}^{M}\mathbf 1\{h_{m,L}\le c\}.
 \]
@@ -180,14 +188,14 @@ If $\limsup_n x_n\cdot e/n>0$, then there is an integer $c\ge0$ with
 
 \section{The estimate at a new level}\label{sec:fresh}
 
-Fix $e\in E$. For an integer $c\ge0$ let $\Pi_c$ be the finite set of nearest-neighbour paths $p=(p_0,\dots,p_s)$ with
-$p_0=0$, $s\le c$ and $p_s\cdot e=0$. For such a path let $k_p(x)=\#\{0\le t<s:p_t=x\}$ be the number of departures
-from $x$ along $p$, and let $\omega^p(x,a,i)=\omega(x,a,i+k_p(x))$ be the environment with those entries removed. The
+Fix $e\in E$ and recall $\Pi_c$ and $\omega^p$ from Section~\ref{sec:intro}; in formulas, for $p\in\Pi_c$ let
+$k_p(x)=\#\{0\le t<s:p_t=x\}$ be the number of departures from $x$ along $p$, and $\omega^p(x,a,i)=\omega(x,a,i+k_p(x))$.
+The
 endpoint $p_s$ has not been left along $p$ after its last visit, so its next entry is not removed. For $L>c$ define
 \[
 q_L^p(\omega)=P_{p_s,\omega^p}\bigl(T_L<D\bigr),\qquad D=\inf\{n\ge1:X_n\cdot e\le0\},
 \]
-where $T_L$ is the hitting time of level $L$ by the walk started at $p_s$. On $\{T_L<D\}$ the walk leaves level $0$ at
+for the walk started at $p_s$. On $\{T_L<D\}$ the walk leaves level $0$ at
 its first step and stays strictly above it until it reaches level $L$, so $q_L^p$ depends only on the stacks at sites
 $x$ with $x\cdot e\ge0$, even if $p$ itself visits negative levels. As $L$ increases, $q_L^p$ decreases to
 \[
@@ -199,22 +207,23 @@ a_L(c)=\sum_{p\in\Pi_c}\E\bigl[q_L^p\bigr],\qquad L>c .
 \]
 
 \begin{lemma}\label{lem:prefix}
-Assume (IID) and (EL), suppose the range is $P_0$-almost surely infinite, and suppose $P_0(A_e)=0$. Then for every
-$c\ge0$, $a_L(c)\to0$ as $L\to\infty$.
+Assume (IID) and (EL), and suppose $P_0(A_e)=0$. Then for every $c\ge0$, $a_L(c)\to0$ as $L\to\infty$.
 \end{lemma}
 
 \begin{proof}
 Fix $p\in\Pi_c$ and let $w_p(\omega)=P_{0,\omega}\bigl((X_0,\dots,X_s)=p\bigr)$, a finite product of entries of
 $\omega$, which is positive $\Prob$-almost surely by (EL). After following $p$ the walk sits at $p_s$ with exactly the
 entries $\omega^p$ left, so by~\eqref{eq:step}, $w_p\,q_\infty^p$ is the probability under $P_{0,\omega}$ that the walk follows $p$
-and afterwards stays strictly above level $0$ and reaches every level. On this event $X_n\cdot e\ge-c$ for all $n$,
-so by Lemma~\ref{lem:onesidedpaths} the event is contained in $A_e$ up to a $P_0$-null set. Hence
-$\E[w_pq_\infty^p]\le P_0(A_e)=0$, and since $w_p>0$ almost surely, $q_\infty^p=0$ almost surely. By monotone
-convergence $\E[q_L^p]\to0$, and $\Pi_c$ is finite.
+and afterwards stays strictly above level $0$ and reaches every level. If the range is $P_0$-almost surely finite, this
+event is $P_0$-null. Otherwise, since $X_n\cdot e\ge-c$ for all $n$ on this event, Lemma~\ref{lem:onesidedpaths} shows
+that it is contained in $A_e$ up to a $P_0$-null set. In both cases $\E[w_pq_\infty^p]\le P_0(A_e)=0$, and since
+$w_p>0$ almost surely, $q_\infty^p=0$ almost surely. By dominated convergence $\E[q_L^p]\to0$, and $\Pi_c$ is finite.
 \end{proof}
 
 \begin{lemma}\label{lem:fresh}
-Assume (IID). Let $m\ge0$, $c\ge0$ and $L>c$, let $\mathcal F_n=\sigma(X_0,\dots,X_n)$, and let
+Assume (IID). Let $m\ge0$, $c\ge0$ and $L>c$. Let $\mathcal F_n=\sigma(X_0,\dots,X_n)$ and
+$\mathcal F_\infty=\sigma(X_n:n\ge0)$; for a stopping time $T$, $\mathcal F_T$ is the $\sigma$-field of events
+determined by the path up to time $T$. Let
 \[
 B_{m,L,c}=\{T_{m+L}<\infty,\ h_{m,L}\le c\}.
 \]
@@ -222,26 +231,29 @@ Then $P_0(B_{m,L,c}\mid\mathcal F_{T_m})\le a_L(c)$ on $\{T_m<\infty\}$.
 \end{lemma}
 
 \begin{proof}
-Fix a finite path $\eta=(\eta_0,\dots,\eta_t)$ with $\eta_0=0$ that reaches level $m$ for the first time at its last
-step, and let $x=\eta_t$. Before time $t$ the walk has left only sites at levels below $m$, so the probability
-of $\eta$ under $P_{0,\omega}$ is a product of entries of stacks at sites $y$ with $y\cdot e<m$. By (IID), conditionally on
-$\{(X_0,\dots,X_t)=\eta\}$ the stacks at sites $y$ with $y\cdot e\ge m$ keep their original joint law.
+Fix a finite path $\eta=(\eta_0,\dots,\eta_t)$ with $\eta_0=0$ whose first visit to level $m$ is at step $t$, let
+$x=\eta_t$, and let $w_\eta(\omega)=P_{0,\omega}\bigl((X_0,\dots,X_t)=\eta\bigr)$. Before time $t$ the walk leaves only
+sites at levels below $m$, so $w_\eta$ is a product of entries of stacks at sites $y$ with $y\cdot e<m$.
 
-On $B_{m,L,c}\cap\{(X_0,\dots,X_t)=\eta\}$ let $t+s$ be the last visit to level $m$ before $T_{m+L}$, so $s\le c$, and
-let $p=(X_{t+r}-x)_{0\le r\le s}$. Then $p\in\Pi_c$, and since $L>c$ the walk has not reached level $m+L$ by time $t+s$.
-The event is the disjoint union over $p\in\Pi_c$ of the events that the walk follows $x+p$ from time $t$ and then
-reaches level $m+L$ before returning to level $m$. Given the environment, by~\eqref{eq:step} the probability of the
-second part, given the first, is $q_L^p(\theta_x\omega')$, where $\omega'$ is the environment with the entries used by
-$\eta$ removed and $(\theta_x\omega')(z,a,i)=\omega'(x+z,a,i)$. As noted above, $q_L^p$ reads only stacks at levels
-$\ge m$ after the shift, and these were not touched by $\eta$, so $q_L^p(\theta_x\omega')=q_L^p(\theta_x\omega)$.
-Writing $W^p_\eta(\omega)\le1$ for the conditional probability of following $x+p$, we get
+On $B_{m,L,c}\cap\{(X_0,\dots,X_t)=\eta\}$ let $t+s$ be the last visit to level $m$ before $T_{m+L}$, so that
+$s=h_{m,L}\le c$, and let $p=(X_{t+r}-x)_{0\le r\le s}$; then $p\in\Pi_c$. Conversely, if the walk follows $\eta$, then
+$x+p$ for some $p\in\Pi_c$, and then reaches level $m+L$ before returning to level $m$, it lies in $B_{m,L,c}$ with
+$h_{m,L}=s$, because the path $x+p$ has at most $c<L$ steps and does not reach level $m+L$. These events are disjoint
+for different $p$: if $p$ is a proper initial piece of $p'$, a walk that follows $x+p'$ is at level $m$ at a step
+after $t+s$ and before $T_{m+L}$. After following $\eta$ and then $x+p$, the walk sits at $x+p_s$, and
+by~\eqref{eq:step} the probability that it then reaches level $m+L$ before returning to level $m$ is
+$q_L^p(\theta_x\omega')$, where $\omega'$ is the environment with the entries used by $\eta$ removed and
+$(\theta_x\omega')(z,a,i)=\omega'(x+z,a,i)$. As noted above, $q_L^p$ reads only stacks at levels $\ge m$ after the
+shift, and these were not touched by $\eta$, so $q_L^p(\theta_x\omega')=q_L^p(\theta_x\omega)$. The probability of
+following $\eta$ and then $x+p$ is at most $w_\eta(\omega)$, so
 \[
-P_{0,\omega}\bigl(B_{m,L,c}\,\big|\,(X_0,\dots,X_t)=\eta\bigr)=\sum_{p\in\Pi_c}W^p_\eta(\omega)\,q_L^p(\theta_x\omega)
-\le\sum_{p\in\Pi_c}q_L^p(\theta_x\omega).
+P_{0,\omega}\bigl(B_{m,L,c},\ (X_0,\dots,X_t)=\eta\bigr)\le w_\eta(\omega)\sum_{p\in\Pi_c}q_L^p(\theta_x\omega).
 \]
-The right side depends only on the stacks at levels $\ge m$. Averaging over the environment conditionally on $\eta$,
-these stacks have their original law, and by translation invariance of that law $\E[q_L^p\circ\theta_x]=\E[q_L^p]$.
-This gives the bound $a_L(c)$ for every $\eta$, which is the claim.
+The factor $w_\eta$ depends only on the stacks at levels $<m$ and the sum only on the stacks at levels $\ge m$, which
+are independent by (IID); by translation invariance $\E[q_L^p\circ\theta_x]=\E[q_L^p]$. Taking expectations,
+$P_0\bigl(B_{m,L,c},\ (X_0,\dots,X_t)=\eta\bigr)\le a_L(c)\,P_0\bigl((X_0,\dots,X_t)=\eta\bigr)$. An event of
+$\mathcal F_{T_m}$ contained in $\{T_m<\infty\}$ is a disjoint union of events $\{(X_0,\dots,X_t)=\eta\}$ of this
+kind, and summing over them gives the claim.
 \end{proof}
 
 \section{Proof of Proposition~\ref{prop:onesided}}\label{sec:onesided}
@@ -250,7 +262,7 @@ If the range is $P_0$-almost surely finite, then $X_n$ is bounded and $X_n/n\to0
 infinite. Suppose $P_0(A_e)=0$.
 
 Fix $c\ge0$, $L>c$ and a residue $r\in\{0,\dots,L-1\}$, and put $m_k=r+kL$, $\mathcal G_k=\mathcal F_{T_{m_k}}$ and
-$Z_k=\mathbf 1_{B_{m_k,L,c}}$, with the convention that $\mathcal F_{T}=\mathcal F_\infty$ on $\{T=\infty\}$. The event
+$Z_k=\mathbf 1_{B_{m_k,L,c}}$. The event
 $B_{m_k,L,c}$ is determined by the path up to $T_{m_k+L}=T_{m_{k+1}}$, so $Z_k$ is $\mathcal G_{k+1}$-measurable, and
 $Z_k-E_0[Z_k\mid\mathcal G_k]$ is a bounded martingale difference sequence. By the strong law of large numbers for such
 sequences and Lemma~\ref{lem:fresh},
@@ -263,8 +275,8 @@ residues and intersecting over the countably many pairs $(c,L)$, almost surely, 
 \limsup_{M\to\infty}\frac1{M+1}\sum_{m=0}^{M}\mathbf 1_{B_{m,L,c}}\le a_L(c).
 \end{equation}
 
-Now take a path in the almost sure event of~\eqref{eq:freq} with $\limsup_nX_n\cdot e/n>0$. Every level is reached,
-so $\mathbf 1_{B_{m,L,c}}=\mathbf 1\{h_{m,L}\le c\}$ and the left side of~\eqref{eq:freq} is $\limsup_MF_{M,L}(c)$. By
+Now take a path in the almost sure event of~\eqref{eq:freq} with $\limsup_nX_n\cdot e/n>0$. Since $h_{m,L}=\infty$ when
+$T_{m+L}=\infty$, $B_{m,L,c}=\{h_{m,L}\le c\}$, and the left side of~\eqref{eq:freq} is $\limsup_MF_{M,L}(c)$. By
 Lemma~\ref{lem:prefix}, $\inf_{L>c}\limsup_MF_{M,L}(c)=0$ for every $c$; since $F_{M,L}(c)$ does not increase in $L$,
 the infimum over all $L\ge1$ is also zero. This contradicts Lemma~\ref{lem:counting}. Hence
 $\limsup_nX_n\cdot e/n\le0$ almost surely. \qed
@@ -283,7 +295,7 @@ and Corollary~\ref{cor:zerner} gives $X_n\cdot e_j/n\to0$ almost surely. Hence $
 particular on $N$.
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{rem:trap}
 The event $N$ need not be the event that every site is visited infinitely
 often. For instance, in $d=2$ give each site an independent uniformly chosen $a\in E$, and let the $i$-th entry of its stack put
 mass $1-3\varepsilon_i$ on $a$ and $\varepsilon_i=2^{-i-4}$ on each other direction. With positive probability the
@@ -320,7 +332,7 @@ responsible for the content of the paper and for decisions concerning its dissem
 
 \section*{Code availability}
 Exact finite-horizon checks of the decomposition in Lemma~\ref{lem:fresh}, checks of the averages in
-Lemma~\ref{lem:counting} on random paths, and a simulation of the example in the closing remark are in the repository
+Lemma~\ref{lem:counting} on random paths, and a simulation of the example in Remark~\ref{rem:trap} are in the repository
 \begin{center}\url{https://github.com/yspennstate/excited-walk-zero-speed-non-transience}.\end{center}
 
 \begin{thebibliography}{99}
@@ -361,17 +373,23 @@ October 2026, \url{https://github.com/yspennstate/math-brain-public/tree/main/pa
 Symbol & Meaning & First appears\\
 \midrule
 $E$ & the $2d$ unit vectors of $\Z^d$ & Section~\ref{sec:intro}\\
-$\omega(x,a,i)$ & probability of step $a$ on the $i$-th visit to $x$ & Section~\ref{sec:intro}\\
+$\omega(x,a,i)$ & probability of step $a$ on the $i$-th visit to $x$ (an entry of the stack at $x$) & Section~\ref{sec:intro}\\
 $P_{y,\omega}$, $P_y$, $\Prob$ & quenched law, annealed law, law of the environment & \eqref{eq:step}\\
+$\E$, $E_y$ & expectation with respect to $\Prob$ and to $P_y$ & Section~\ref{sec:intro}\\
 $A_\ell$ & the event $X_n\cdot\ell\to+\infty$ & Section~\ref{sec:intro}\\
 $N$ & the event $|X_n|\not\to\infty$ & Section~\ref{sec:intro}\\
-$T_m$, $I_{m,L}$, $h_{m,L}$ & first hitting time of level $m$, visits to level $m$ before level $m+L$, time from $T_m$ to the last of them & Section~\ref{sec:prelim}\\
+level $m$ & the set $\{x:x\cdot e=m\}$ & Section~\ref{sec:intro}\\
+$T_m$, $h_{m,L}$ & first time at level $m$; time from $T_m$ to the last visit to level $m$ before $T_{m+L}$ & Section~\ref{sec:intro}\\
+$\Pi_c$, $\omega^p$ & short paths; the environment with the entries used by $p$ removed & Section~\ref{sec:intro}\\
+$I_{m,L}$ & visits to level $m$ before level $m+L$ & Section~\ref{sec:prelim}\\
 $F_{M,L}(c)$ & fraction of levels $m\le M$ with $h_{m,L}\le c$ & Section~\ref{sec:prelim}\\
-$\Pi_c$, $k_p$, $\omega^p$ & short paths, their departure counts, the environment with their cookies removed & Section~\ref{sec:fresh}\\
+$k_p$ & departure counts of $p$ & Section~\ref{sec:fresh}\\
 $q_L^p$, $q_\infty^p$, $D$ & chance of reaching level $L$ before returning to level $0$, its limit, the return time & Section~\ref{sec:fresh}\\
 $a_L(c)$ & $\sum_{p\in\Pi_c}\E[q_L^p]$ & Section~\ref{sec:fresh}\\
-$B_{m,L,c}$, $\mathcal F_n$ & the event $T_{m+L}<\infty$, $h_{m,L}\le c$; the natural filtration & Lemma~\ref{lem:fresh}\\
-$W^p_\eta$, $\theta_x$ & probability of following $x+p$ after $\eta$; the shift by $x$ & Lemma~\ref{lem:fresh}\\
+$w_p$ & quenched probability of following $p$ & Lemma~\ref{lem:prefix}\\
+$B_{m,L,c}$ & the event $T_{m+L}<\infty$, $h_{m,L}\le c$ & Lemma~\ref{lem:fresh}\\
+$\mathcal F_n$, $\mathcal F_\infty$, $\mathcal F_T$ & the natural filtration, its limit, the $\sigma$-field at a stopping time & Lemma~\ref{lem:fresh}\\
+$w_\eta$, $\omega'$, $\theta_x$ & quenched probability of following $\eta$; the environment with the entries used by $\eta$ removed; the shift by $x$ & Lemma~\ref{lem:fresh}\\
 \bottomrule
 \end{tabular}
 \end{center}
